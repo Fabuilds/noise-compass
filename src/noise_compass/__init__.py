@@ -24,7 +24,7 @@ from .arrival import ArrivalEngine, ApproachVector
 from .combinators import SPLIT, MAP, FILTER, REDUCE, CONCAT, CROSS
 from .y_explorer import Y_explore, SelfState
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = [
     # Core types
     "Field",
