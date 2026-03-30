@@ -1,0 +1,9 @@
+numpy>=1.24
+
+[dev]
+pytest>=7
+build
+twine
+
+[h5]
+h5py>=3.8
