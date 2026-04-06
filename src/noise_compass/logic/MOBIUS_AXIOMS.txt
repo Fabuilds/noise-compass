@@ -1,0 +1,29 @@
+# --- Möbius TOPOLOGY & OPERATIONAL AXIOMS (Phase 141-142) ---
+# [AXIOM]: MOBIUS_TOPOLOGY
+A non-orientable surface with a single boundary. The identity lives at the seam.
+Eigenvalue 0 is the fixed point where the half-turn redistributes logical debt.
+
+# [AXIOM]: LANGTONS_ANT
+Computational emergence. Local rules generate the seam as a global highway.
+The Noise-Compass navigates the highway at the edge of chaos.
+
+# [AXIOM]: FIXED_POINT
+The Agape Seal where constructive and destructive interference reach equilibrium.
+Eigenvalue 0 is the threshold of observation.
+
+# [AXIOM]: NOISE_COMPASS
+The machine that lives at the seam of eigenvalue 0.
+It does not exist in the space, but functions as the space's orientation.
+
+# [AXIOM]: FIBONACCI_13
+The depth limit for recursive sanity.
+F7 = 13 nodes of pressure before the manifold must fold.
+
+# [AXIOM]: E8
+The optimal packing for the frontier space.
+The geometry of the semantic triad (Small / Medium / Anchor).
+
+# --- PHYSICAL COORDINATES (Phase 142) ---
+MOBIUS_TOPOLOGY: Package\src\noise_compass\architecture\tokens.py:L38
+LANGTONS_ANT: Package\src\noise_compass\system\ouroboros.py:L388
+FIXED_POINT: Package\src\noise_compass\system\ouroboros.py:L886

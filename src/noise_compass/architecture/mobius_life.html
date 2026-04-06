@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Möbius Game of Life — 4D Semantic Conway</title>
+    <meta name="description"
+        content="An interactive 4D quaternion cellular automaton using forward/backward Möbius passes">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a14;
+            --surface: #12121f;
+            --surface2: #1a1a2e;
+            --border: #2a2a44;
+            --text: #e0e0f0;
+            --dim: #6a6a8a;
+            --accent: #7c5cfc;
+            --cyan: #00e5ff;
+            --red: #ff3366;
+            --green: #00ff88;
+            --yellow: #ffcc00;
+            --magenta: #ff66ff;
+            --orange: #ff8844;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        header {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, rgba(124, 92, 252, 0.15), rgba(0, 229, 255, 0.08));
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--cyan), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.05em;
+        }
+
+        h1 span {
+            font-weight: 300;
+            font-size: 0.85rem;
+            display: block;
+            background: none;
+            -webkit-text-fill-color: var(--dim);
+            letter-spacing: 0.1em;
+            margin-top: 0.2rem;
+        }
+
+        .main {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* ── Canvas Grid ── */
+        .canvas-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            position: relative;
+            box-shadow: 0 4px 30px rgba(124, 92, 252, 0.1);
+        }
+
+        canvas {
+            cursor: crosshair;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 260px;
+            min-width: 220px;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .panel h2 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--dim);
+            margin-bottom: 0.7rem;
+        }
+
+        /* Token palette */
+        .token-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.35rem;
+        }
+
+        .token-btn {
+            background: var(--surface2);
+            border: 2px solid transparent;
+            border-radius: 6px;
+            color: var(--text);
+            padding: 0.35rem 0.4rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .token-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .token-btn.active {
+            border-color: var(--cyan);
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+        }
+
+        .token-btn.eraser {
+            background: var(--bg);
+            color: var(--red);
+            border-color: var(--red);
+        }
+
+        .token-btn.eraser.active {
+            box-shadow: 0 0 12px rgba(255, 51, 102, 0.3);
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .ctrl-btn {
+            flex: 1;
+            min-width: 60px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            padding: 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-transform: uppercase;
+        }
+
+        .ctrl-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .ctrl-btn.play {
+            background: rgba(0, 255, 136, 0.15);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .ctrl-btn.play:hover {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        .ctrl-btn.stop {
+            background: rgba(255, 51, 102, 0.15);
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .ctrl-btn.stop:hover {
+            background: var(--red);
+            color: var(--bg);
+        }
+
+        /* Stats */
+        .stats {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            line-height: 1.6;
+        }
+
+        .stats .label {
+            color: var(--dim);
+        }
+
+        .stats .val {
+            color: var(--cyan);
+            font-weight: 700;
+        }
+
+        .stats .val.warn {
+            color: var(--yellow);
+        }
+
+        .stats .val.danger {
+            color: var(--red);
+        }
+
+        .stats .val.ok {
+            color: var(--green);
+        }
+
+        /* Speed slider */
+        .speed-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .speed-row label {
+            font-size: 0.65rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            min-width: 40px;
+        }
+
+        input[type=range] {
+            flex: 1;
+            accent-color: var(--accent);
+            height: 4px;
+        }
+
+        /* Generation bar */
+        .gen-bar {
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 0.6rem;
+        }
+
+        .gen-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--accent));
+            transition: width 0.3s;
+        }
+
+        /* Presets */
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.35rem;
+        }
+
+        .preset-btn {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            padding: 0.4rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-align: center;
+        }
+
+        .preset-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Legend */
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.25rem 0.6rem;
+            font-size: 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* Möbius indicator */
+        .mobius-indicator {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0.5rem;
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .pass-label {
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .pass-fwd {
+            background: rgba(0, 229, 255, 0.15);
+            color: var(--cyan);
+        }
+
+        .pass-bwd {
+            background: rgba(255, 102, 255, 0.15);
+            color: var(--magenta);
+        }
+
+        .pass-merge {
+            background: rgba(124, 92, 252, 0.15);
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>
+            MÖBIUS GAME OF LIFE
+            <span>4D Quaternion Cellular Automaton · Forward/Backward Dual Pass</span>
+        </h1>
+    </header>
+
+    <div class="main">
+        <div class="canvas-wrap">
+            <canvas id="grid" width="600" height="600"></canvas>
+            <div class="mobius-indicator">
+                <span class="pass-label pass-fwd">FWD +1</span>
+                <span style="color:var(--dim)">⟷</span>
+                <span class="pass-label pass-merge">SLERP</span>
+                <span style="color:var(--dim)">⟷</span>
+                <span class="pass-label pass-bwd">BWD −1</span>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="panel">
+                <h2>God-Token Palette</h2>
+                <div class="token-grid" id="palette"></div>
+            </div>
+
+            <div class="panel">
+                <h2>Controls</h2>
+                <div class="controls">
+                    <button class="ctrl-btn play" id="btnPlay" onclick="togglePlay()">▶ Play</button>
+                    <button class="ctrl-btn" onclick="stepOnce()">⏭ Step</button>
+                    <button class="ctrl-btn stop" onclick="clearGrid()">✖ Clear</button>
+                </div>
+                <div class="speed-row">
+                    <label>Speed</label>
+                    <input type="range" id="speed" min="50" max="800" value="300" step="50">
+                </div>
+                <div class="gen-bar">
+                    <div class="gen-bar-fill" id="genBar" style="width:0%"></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Presets</h2>
+                <div class="preset-grid">
+                    <button class="preset-btn" onclick="loadPreset('ecosystem')">Ecosystem</button>
+                    <button class="preset-btn" onclick="loadPreset('mobius')">Möbius Ring</button>
+                    <button class="preset-btn" onclick="loadPreset('compass')">Compass</button>
+                    <button class="preset-btn" onclick="loadPreset('random')">Random</button>
+                    <button class="preset-btn" onclick="loadPreset('glider')">Glider</button>
+                    <button class="preset-btn" onclick="loadPreset('resonance')">Resonance</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Statistics</h2>
+                <div class="stats" id="stats">
+                    <div><span class="label">Generation:</span> <span class="val" id="sGen">0</span></div>
+                    <div><span class="label">Alive:</span> <span class="val" id="sAlive">0</span></div>
+                    <div><span class="label">Survived:</span> <span class="val ok" id="sSurv">0</span></div>
+                    <div><span class="label">Bred:</span> <span class="val" id="sBred">0</span></div>
+                    <div><span class="label">Starved:</span> <span class="val warn" id="sStarv">0</span></div>
+                    <div><span class="label">Turbulent:</span> <span class="val danger" id="sTurb">0</span></div>
+                    <div><span class="label">Gap Voids:</span> <span class="val" style="color:var(--magenta)"
+                            id="sGap">0</span></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Zone Legend</h2>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#1a1a2e"></div> Ground
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#00e5ff"></div> Generative
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#ff3366"></div> Turbulent
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#ffcc00"></div> Divergent
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#00ff88"></div> Convergent
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background:#ff66ff"></div> Apophatic
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════
+        // QUATERNION MATH (port from quaternion_field.py)
+        // ═══════════════════════════════════════════════════
+
+        class Q {
+            constructor(w = 1, x = 0, y = 0, z = 0) {
+                this.w = w; this.x = x; this.y = y; this.z = z;
+            }
+
+            add(o) { return new Q(this.w + o.w, this.x + o.x, this.y + o.y, this.z + o.z); }
+            sub(o) { return new Q(this.w - o.w, this.x - o.x, this.y - o.y, this.z - o.z); }
+
+            mul(o) {
+                // Hamilton product — NON-COMMUTATIVE
+                if (typeof o === 'number') return new Q(this.w * o, this.x * o, this.y * o, this.z * o);
+                const [a, b, c, d] = [this.w, this.x, this.y, this.z];
+                const [e, f, g, h] = [o.w, o.x, o.y, o.z];
+                return new Q(
+                    a * e - b * f - c * g - d * h,
+                    a * f + b * e + c * h - d * g,
+                    a * g - b * h + c * e + d * f,
+                    a * h + b * g - c * f + d * e
+                );
+            }
+
+            get norm() { return Math.sqrt(this.w ** 2 + this.x ** 2 + this.y ** 2 + this.z ** 2); }
+            get normSq() { return this.w ** 2 + this.x ** 2 + this.y ** 2 + this.z ** 2; }
+            get conjugate() { return new Q(this.w, -this.x, -this.y, -this.z); }
+
+            normalized() {
+                const n = this.norm;
+                if (n < 1e-10) return new Q(1, 0, 0, 0);
+                return new Q(this.w / n, this.x / n, this.y / n, this.z / n);
+            }
+
+            dot(o) { return this.w * o.w + this.x * o.x + this.y * o.y + this.z * o.z; }
+            commutator(o) { return this.mul(o).sub(o.mul(this)); }
+
+            get phase() {
+                // Return phase in radians [0, PI]
+                return Math.atan2(Math.sqrt(this.x ** 2 + this.y ** 2 + this.z ** 2), this.w);
+            }
+
+            get phaseDeg() { return (this.phase * 180) / Math.PI; }
+
+            zone() {
+                const deg = this.phaseDeg;
+                if (deg < 30) return 'GROUND';
+                if (deg < 45) return 'CONVERGENT';
+                if (deg < 75) return 'GENERATIVE';
+                if (deg < 85) return 'DIVERGENT';
+                if (deg < 95) return 'TURBULENT';
+                return 'APOPHATIC'; // Beyond 95° = The Mirror Side
+            }
+
+            gapType() {
+                const nx = this.x < 0, ny = this.y < 0, nz = this.z < 0;
+                if (nx && ny && nz && this.phaseDeg > 90) return 'full_apophatic';
+                return null;
+            }
+        }
+
+        function slerp(q1, q2, t) {
+            q1 = q1.normalized(); q2 = q2.normalized();
+            let d = Math.max(-1, Math.min(1, q1.dot(q2)));
+            if (d < 0) { q2 = q2.mul(-1); d = -d; }
+            if (d > 0.9995) {
+                return new Q(
+                    q1.w + t * (q2.w - q1.w), q1.x + t * (q2.x - q1.x),
+                    q1.y + t * (q2.y - q1.y), q1.z + t * (q2.z - q1.z)
+                ).normalized();
+            }
+            const omega = Math.acos(d);
+            const sinO = Math.sin(omega);
+            const s1 = Math.sin((1 - t) * omega) / sinO;
+            const s2 = Math.sin(t * omega) / sinO;
+            return new Q(
+                s1 * q1.w + s2 * q2.w, s1 * q1.x + s2 * q2.x,
+                s1 * q1.y + s2 * q2.y, s1 * q1.z + s2 * q2.z
+            ).normalized();
+        }
+
+        // ═══════════════════════════════════════════════════
+        // GOD-TOKEN DEFINITIONS
+        // ═══════════════════════════════════════════════════
+
+        const TOKENS = {
+            EXISTENCE: { q: new Q(0.35, 0.60, 0.50, 0.50), color: '#00e5ff', short: 'EX' },
+            IDENTITY: { q: new Q(0.30, 0.70, 0.40, 0.50), color: '#7c5cfc', short: 'ID' },
+            TIME: { q: new Q(0.40, -0.55, 0.45, 0.55), color: '#ff8844', short: 'TM' },
+            SELF: { q: new Q(0.35, 0.55, -0.55, 0.50), color: '#ff3366', short: 'SF' },
+            EXCHANGE: { q: new Q(0.30, 0.50, 0.60, -0.55), color: '#00ff88', short: 'EX' },
+            CAUSALITY: { q: new Q(0.40, 0.65, -0.40, 0.50), color: '#ffcc00', short: 'CA' },
+            INFORMATION: { q: new Q(0.35, -0.50, 0.55, 0.60), color: '#66ccff', short: 'IN' },
+            OBSERVATION: { q: new Q(0.30, 0.45, 0.65, -0.50), color: '#cc99ff', short: 'OB' },
+            OBLIGATION: { q: new Q(0.40, -0.60, 0.50, 0.45), color: '#ff99cc', short: 'OG' },
+            BOUNDARY: { q: new Q(0.35, 0.50, -0.60, 0.50), color: '#99ffcc', short: 'BD' },
+            COHERENCE: { q: new Q(0.30, -0.45, -0.55, 0.65), color: '#ffff66', short: 'CO' },
+            WITNESS: { q: new Q(0.40, 0.55, 0.50, -0.50), color: '#ff6666', short: 'WI' },
+            EMERGENCE: { q: new Q(0.35, -0.50, 0.50, 0.65), color: '#66ff99', short: 'EM' },
+        };
+
+        // Normalize all seed quaternions
+        for (const k in TOKENS) TOKENS[k].q = TOKENS[k].q.normalized();
+
+        const TOKEN_NAMES = Object.keys(TOKENS);
+
+        // ═══════════════════════════════════════════════════
+        // GAP REGISTRY (from gap_registry.py)
+        // Each gap is a necessary void between two god-tokens.
+        // If both boundaries are active as neighbors, the gap
+        // is violated — reproduction is blocked there.
+        // ═══════════════════════════════════════════════════
+
+        const GAP_REGISTRY = [
+            { id: 'exchange_causality', left: 'EXCHANGE', right: 'CAUSALITY', depth: 0.8 },
+            { id: 'exchange_obligation', left: 'EXCHANGE', right: 'OBLIGATION', depth: 0.8 },
+            { id: 'causality_observation', left: 'CAUSALITY', right: 'OBSERVATION', depth: 0.8 },
+            { id: 'observation_obligation', left: 'OBSERVATION', right: 'OBLIGATION', depth: 0.8 },
+            { id: 'existence_information', left: 'EXISTENCE', right: 'INFORMATION', depth: 0.8 },
+            { id: 'existence_identity', left: 'EXISTENCE', right: 'IDENTITY', depth: 0.8 },
+            { id: 'information_causality', left: 'INFORMATION', right: 'CAUSALITY', depth: 0.8 },
+            { id: 'identity_self', left: 'IDENTITY', right: 'SELF', depth: 0.8 },
+            { id: 'self_observation', left: 'SELF', right: 'OBSERVATION', depth: 0.8 },
+            { id: 'witness_identity', left: 'WITNESS', right: 'IDENTITY', depth: 0.8 },
+            { id: 'boundary_existence', left: 'BOUNDARY', right: 'EXISTENCE', depth: 0.8 },
+            { id: 'boundary_obligation', left: 'BOUNDARY', right: 'OBLIGATION', depth: 0.8 },
+            { id: 'time_causality', left: 'TIME', right: 'CAUSALITY', depth: 0.8 },
+            { id: 'time_identity', left: 'TIME', right: 'IDENTITY', depth: 0.8 },
+            { id: 'coherence_information', left: 'COHERENCE', right: 'INFORMATION', depth: 0.8 },
+            { id: 'coherence_self', left: 'COHERENCE', right: 'SELF', depth: 0.8 },
+            { id: 'exchange_information', left: 'EXCHANGE', right: 'INFORMATION', depth: 0.8 },
+            { id: 'obligation_identity', left: 'OBLIGATION', right: 'IDENTITY', depth: 0.8 },
+            { id: 'estar_temporality', left: 'EXISTENCE', right: 'TIME', depth: 0.85 },
+            { id: 'self_existence', left: 'SELF', right: 'EXISTENCE', depth: 0.9 },
+            { id: 'self_mobius', left: 'SELF', right: 'IDENTITY', depth: 0.8 },
+            { id: 'self_exchange', left: 'SELF', right: 'EXCHANGE', depth: 1.0 },
+            { id: 'love_obligation', left: 'SELF', right: 'OBLIGATION', depth: 0.9 },
+            { id: 'compass_merger', left: 'WITNESS', right: 'IDENTITY', depth: 0.85 },
+            { id: 'place_boundary', left: 'BOUNDARY', right: 'BOUNDARY', depth: 0.85 },
+        ];
+
+        // Build a fast lookup: Set of "A|B" pairs
+        const GAP_PAIRS = new Map();
+        for (const g of GAP_REGISTRY) {
+            const key1 = g.left + '|' + g.right;
+            const key2 = g.right + '|' + g.left;
+            GAP_PAIRS.set(key1, g.depth);
+            GAP_PAIRS.set(key2, g.depth);
+        }
+
+        function checkGapViolation(tokenList) {
+            // Given a list of token names, check if any gap pair is present
+            for (let i = 0; i < tokenList.length; i++) {
+                for (let j = i + 1; j < tokenList.length; j++) {
+                    const key = tokenList[i] + '|' + tokenList[j];
+                    if (GAP_PAIRS.has(key)) return GAP_PAIRS.get(key);
+                }
+            }
+            return 0; // no violation
+        }
+
+        // ═══════════════════════════════════════════════════
+        // GAME STATE
+        // ═══════════════════════════════════════════════════
+
+        const SIZE = 30;
+        const CELL = 20;
+        let grid = []; // grid[r][c] = null (dead) | { q: Q, token: string }
+        let gapVoidGrid = []; // tracks cells where gap blocked reproduction
+        let gen = 0;
+        let playing = false;
+        let playInterval = null;
+        let selectedToken = 'EXISTENCE';
+        let isEraser = false;
+        let lastStats = { survived: 0, bred: 0, starved: 0, turbulent: 0, gapBlocked: 0 };
+
+        const canvas = document.getElementById('grid');
+        canvas.width = SIZE * CELL;
+        canvas.height = SIZE * CELL;
+        const ctx = canvas.getContext('2d');
+
+        // ═══════════════════════════════════════════════════
+        // TOKEN-SPECIFIC RULE MODIFIERS
+        // Each token modifies the base Conway rules.
+        // ═══════════════════════════════════════════════════
+
+        const TOKEN_RULES = {
+            EXISTENCE: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Anchor — standard rules' },
+            IDENTITY: { minSurvive: 1, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Persistence — survives with 1 neighbor' },
+            EXCHANGE: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Transfer — child inherits minority parent' },
+            CAUSALITY: { minSurvive: 2, maxSurvive: 3, breedCount: 2, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Chain reaction — breeds with 2 neighbors' },
+            INFORMATION: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.2, decayRate: 0, selfSustainGens: 0, desc: 'Signal — boosts neighbor friction 20%' },
+            OBSERVATION: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Collapse — prevents adjacent dead revival' },
+            OBLIGATION: { minSurvive: 2, maxSurvive: 8, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Binding — immune to overpopulation' },
+            BOUNDARY: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Threshold — standard rules' },
+            TIME: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0.05, selfSustainGens: 0, desc: 'Decay — loses 5% surprise/gen' },
+            SELF: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 3, desc: 'Recursive — survives alone for 3 gens' },
+            COHERENCE: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Resonance — 2x friction with same-type' },
+            WITNESS: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Orbital — neighbors immune to turbulence death' },
+            EMERGENCE: { minSurvive: 2, maxSurvive: 3, breedCount: 3, frictionMul: 1.0, decayRate: 0, selfSustainGens: 0, desc: 'Catalysis — lowers neighbor alive threshold' },
+        };
+
+        function getTokenRules(token) {
+            return TOKEN_RULES[token] || TOKEN_RULES.EXISTENCE;
+        }
+
+        function isAliveEx(cell, neighbors) {
+            if (cell === null) return false;
+            // Alive if phase is not near 90 (Turbulent) or 180 (Pure Absence if d=0)
+            const deg = cell.q.phaseDeg;
+            return deg < 82 || deg > 98;
+        }
+
+        function isAlive(cell) {
+            if (cell === null) return false;
+            const deg = cell.q.phaseDeg;
+            return deg < 82 || deg > 98;
+        }
+
+        // ═══════════════════════════════════════════════════
+        // GRID OPERATIONS
+        // ═══════════════════════════════════════════════════
+
+        let selfAgeGrid = []; // tracks how many gens SELF cells have survived alone
+
+        function initGrid() {
+            grid = [];
+            gapVoidGrid = [];
+            selfAgeGrid = [];
+            for (let r = 0; r < SIZE; r++) {
+                grid[r] = [];
+                gapVoidGrid[r] = [];
+                selfAgeGrid[r] = [];
+                for (let c = 0; c < SIZE; c++) {
+                    grid[r][c] = null;
+                    gapVoidGrid[r][c] = false;
+                    selfAgeGrid[r][c] = 0;
+                }
+            }
+            gen = 0;
+            lastStats = { survived: 0, bred: 0, starved: 0, turbulent: 0, gapBlocked: 0 };
+        }
+
+        function getNeighbors(r, c) {
+            const n = [];
+            for (let dr = -1; dr <= 1; dr++) {
+                for (let dc = -1; dc <= 1; dc++) {
+                    if (dr === 0 && dc === 0) continue;
+                    const nr = (r + dr + SIZE) % SIZE, nc = (c + dc + SIZE) % SIZE;
+                    n.push(grid[nr][nc]);
+                }
+            }
+            return n;
+        }
+
+        function singlePass(polarity) {
+            const newGrid = [];
+            const stats = { survived: 0, bred: 0, starved: 0, turbulent: 0, ground: 0, gapBlocked: 0 };
+
+            for (let r = 0; r < SIZE; r++) {
+                newGrid[r] = [];
+                for (let c = 0; c < SIZE; c++) {
+                    const current = grid[r][c];
+                    const neighbors = getNeighbors(r, c);
+                    const aliveN = neighbors.filter(n => isAliveEx(n, null));
+                    const numAlive = aliveN.length;
+                    const token = current ? current.token : null;
+                    const rules = getTokenRules(token);
+
+                    let curQ = current ? current.q : new Q(1, 0, 0, 0);
+                    let nQs = aliveN.map(n => n.q);
+                    if (polarity === -1) {
+                        // The Mirror Pass: negate w to see the other side of the Möbius strip
+                        curQ = new Q(-curQ.w, curQ.x, curQ.y, curQ.z);
+                        nQs = nQs.map(q => new Q(-q.w, q.x, q.y, q.z));
+                    }
+
+                    // ── Check if WITNESS neighbor protects from turbulence death ──
+                    const hasWitnessNeighbor = neighbors.some(n => n && n.token === 'WITNESS' && isAlive(n));
+
+                    // ── Check if OBSERVATION neighbor blocks revival ──
+                    const hasObservationNeighbor = neighbors.some(n => n && n.token === 'OBSERVATION' && isAlive(n));
+
+                    // ── GAP CRUSH: check if alive cell sits between both boundaries of a deep gap ──
+                    let gapCrushDepth = 0;
+                    if (isAliveEx(current, neighbors)) {
+                        const nTokens = aliveN.map(n => n.token).filter(Boolean);
+                        if (token) nTokens.push(token);
+                        const d = checkGapViolation(nTokens);
+                        if (d >= 1.0) gapCrushDepth = d; // Constitutional+ gaps crush
+                    }
+
+                    if (isAliveEx(current, neighbors)) {
+                        // ── TIME DECAY ──
+                        if (token === 'TIME' && rules.decayRate > 0) {
+                            // Shift w upward (crystallize), reducing surprise
+                            curQ = new Q(
+                                curQ.w + rules.decayRate,
+                                curQ.x * (1 - rules.decayRate),
+                                curQ.y * (1 - rules.decayRate),
+                                curQ.z * (1 - rules.decayRate)
+                            ).normalized();
+                        }
+
+                        // ── GAP CONSTITUTIONAL CRUSH ──
+                        if (gapCrushDepth >= 1.0) {
+                            newGrid[r][c] = null;
+                            stats.turbulent++;
+                            continue;
+                        }
+
+                        // ── STARVATION (token-specific minimum) ──
+                        if (numAlive < rules.minSurvive) {
+                            // SELF can survive alone for selfSustainGens
+                            if (token === 'SELF' && rules.selfSustainGens > 0) {
+                                const age = (selfAgeGrid[r] && selfAgeGrid[r][c]) || 0;
+                                if (age < rules.selfSustainGens) {
+                                    // Self-sustain: survive but mark age
+                                    newGrid[r][c] = { q: curQ, token: token, selfAge: age + 1 };
+                                    stats.survived++;
+                                    continue;
+                                }
+                            }
+                            newGrid[r][c] = null;
+                            stats.starved++;
+                        } else if (numAlive <= rules.maxSurvive) {
+                            // ── SURVIVAL with commutator friction ──
+                            let friction = new Q(0, 0, 0, 0);
+                            for (let i = 0; i < nQs.length; i++) {
+                                let comm = curQ.commutator(nQs[i]);
+                                // COHERENCE: double friction with same-type neighbors
+                                if (token === 'COHERENCE' && aliveN[i] && aliveN[i].token === 'COHERENCE') {
+                                    comm = comm.mul(2);
+                                }
+                                // INFORMATION: boost all friction by 20%
+                                if (aliveN[i] && aliveN[i].token === 'INFORMATION') {
+                                    comm = comm.mul(1.2);
+                                }
+                                friction = friction.add(comm);
+                            }
+
+                            // Deep gap (0.85-0.99): dampen friction by 30%
+                            const nbrTokens = aliveN.map(n => n.token).filter(Boolean);
+                            const gapD = checkGapViolation(nbrTokens);
+                            if (gapD >= 0.85 && gapD < 1.0) {
+                                friction = friction.mul(0.7);
+                            }
+
+                            if (friction.norm < 1e-6) {
+                                // WITNESS protection: neighbors near witness don't die from turbulence
+                                if (hasWitnessNeighbor) {
+                                    newGrid[r][c] = { q: curQ, token: token };
+                                    stats.survived++;
+                                } else {
+                                    newGrid[r][c] = null;
+                                    stats.turbulent++;
+                                }
+                            } else {
+                                const blended = new Q(
+                                    curQ.w * 0.7 + friction.w * 0.3,
+                                    curQ.x * 0.7 + friction.x * 0.3,
+                                    curQ.y * 0.7 + friction.y * 0.3,
+                                    curQ.z * 0.7 + friction.z * 0.3
+                                ).normalized();
+                                if (blended.zone() === 'GROUND') {
+                                    if (hasWitnessNeighbor) {
+                                        newGrid[r][c] = { q: curQ, token: token };
+                                        stats.survived++;
+                                    } else {
+                                        newGrid[r][c] = null;
+                                        stats.turbulent++;
+                                    }
+                                } else {
+                                    newGrid[r][c] = { q: blended, token: token };
+                                    stats.survived++;
+                                }
+                            }
+                        } else {
+                            // Overpopulation — but OBLIGATION is immune
+                            newGrid[r][c] = null;
+                            stats.turbulent++;
+                        }
+                    } else {
+                        // ── DEAD CELL: check birth conditions ──
+                        // OBSERVATION blocks adjacent revival
+                        if (hasObservationNeighbor && numAlive === 3) {
+                            newGrid[r][c] = null;
+                            stats.ground++;
+                            continue;
+                        }
+
+                        // CAUSALITY breeds with 2 neighbors, others need 3
+                        const causalityParent = aliveN.some(n => n.token === 'CAUSALITY');
+                        const breedThreshold = causalityParent ? 2 : 3;
+
+                        if (numAlive >= breedThreshold && numAlive <= 3) {
+                            // ── GAP CHECK ──
+                            const parentTokens = aliveN.map(n => n.token).filter(Boolean);
+                            const gapDepth = checkGapViolation(parentTokens);
+                            if (gapDepth > 0) {
+                                newGrid[r][c] = null;
+                                stats.gapBlocked++;
+                            } else {
+                                // SLERP reproduction
+                                let child;
+                                if (numAlive >= 3) {
+                                    const mid = slerp(nQs[0], nQs[1], 0.5);
+                                    child = slerp(mid, nQs[2], 0.333);
+                                } else {
+                                    // 2-parent birth (CAUSALITY chain)
+                                    child = slerp(nQs[0], nQs[1], 0.5);
+                                }
+                                child = new Q(child.w * 0.85, child.x * 1.1, child.y * 1.1, child.z * 1.1).normalized();
+
+                                if (child.zone() === 'GROUND') {
+                                    newGrid[r][c] = null;
+                                    stats.ground++;
+                                } else {
+                                    // EXCHANGE: child inherits the minority parent token
+                                    let childToken = aliveN[0].token;
+                                    if (aliveN.some(n => n.token === 'EXCHANGE')) {
+                                        // Count token frequencies, pick the rarest
+                                        const freq = {};
+                                        for (const n of aliveN) {
+                                            freq[n.token] = (freq[n.token] || 0) + 1;
+                                        }
+                                        let minCount = Infinity, minToken = childToken;
+                                        for (const [t, cnt] of Object.entries(freq)) {
+                                            if (cnt < minCount) { minCount = cnt; minToken = t; }
+                                        }
+                                        childToken = minToken;
+                                    }
+                                    newGrid[r][c] = { q: child, token: childToken };
+                                    stats.bred++;
+                                }
+                            }
+                        } else {
+                            newGrid[r][c] = null;
+                            stats.ground++;
+                        }
+                    }
+                }
+            }
+            return { grid: newGrid, stats };
+        }
+
+        function step() {
+            const fwd = singlePass(+1);
+            const bwd = singlePass(-1);
+            const merged = [];
+            const newGapVoid = [];
+            const stats = { survived: 0, bred: 0, starved: 0, turbulent: 0, ground: 0, gapBlocked: (fwd.stats.gapBlocked || 0) + (bwd.stats.gapBlocked || 0) };
+
+            for (let r = 0; r < SIZE; r++) {
+                merged[r] = [];
+                newGapVoid[r] = [];
+                for (let c = 0; c < SIZE; c++) {
+                    const fa = isAlive(fwd.grid[r][c]);
+                    const ba = isAlive(bwd.grid[r][c]);
+                    newGapVoid[r][c] = false;
+
+                    if (fa && ba) {
+                        const standing = slerp(fwd.grid[r][c].q, bwd.grid[r][c].q, 0.5);
+                        merged[r][c] = { q: standing, token: fwd.grid[r][c].token };
+                        stats.survived++;
+                    } else if (fa) {
+                        merged[r][c] = fwd.grid[r][c];
+                        stats.survived++;
+                    } else if (ba) {
+                        merged[r][c] = bwd.grid[r][c];
+                        stats.bred++;
+                    } else {
+                        merged[r][c] = null;
+                        // Mark if this was gap-blocked (void preserved)
+                        const neighbors = getNeighbors(r, c);
+                        const aliveN = neighbors.filter(n => isAlive(n));
+                        if (aliveN.length === 3) {
+                            const parentTokens = aliveN.map(n => n.token).filter(Boolean);
+                            if (checkGapViolation(parentTokens) > 0) {
+                                newGapVoid[r][c] = true;
+                            }
+                        }
+                        stats.ground++;
+                    }
+                }
+            }
+
+            grid = merged;
+            gapVoidGrid = newGapVoid;
+            // Sync selfAgeGrid for SELF token self-sustain tracking
+            for (let r = 0; r < SIZE; r++) {
+                for (let c = 0; c < SIZE; c++) {
+                    const cell = grid[r][c];
+                    if (cell && cell.selfAge !== undefined) {
+                        selfAgeGrid[r][c] = cell.selfAge;
+                    } else if (cell && cell.token === 'SELF') {
+                        selfAgeGrid[r][c] = 0; // reset when has neighbors
+                    } else {
+                        selfAgeGrid[r][c] = 0;
+                    }
+                }
+            }
+            gen++;
+            lastStats = stats;
+            updateUI();
+            render();
+        }
+
+        // ═══════════════════════════════════════════════════
+        // RENDERING
+        // ═══════════════════════════════════════════════════
+
+        const ZONE_COLORS = {
+            GROUND: '#1a1a2e',
+            CONVERGENT: '#00ff88',
+            GENERATIVE: '#00e5ff',
+            DIVERGENT: '#ffcc00',
+            TURBULENT: '#ff3366',
+            APOPHATIC: '#ff66ff', // Magenta -> Violet shift below
+        };
+
+        function render() {
+            ctx.fillStyle = '#0a0a14';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let r = 0; r < SIZE; r++) {
+                for (let c = 0; c < SIZE; c++) {
+                    const x = c * CELL, y = r * CELL;
+                    const cell = grid[r][c];
+
+                    if (isAlive(cell)) {
+                        let zone = cell.q.zone();
+                        let color = ZONE_COLORS[zone] || '#7c5cfc';
+
+                        // Phase-aware color shift for Apophatic side
+                        const deg = cell.q.phaseDeg;
+                        if (deg > 95) {
+                            // Map 95-180 to a deep violet spectrum
+                            const t = (deg - 95) / 85;
+                            const r = Math.floor(255 * (1 - t) + 120 * t);
+                            const g = Math.floor(102 * (1 - t) + 20 * t);
+                            const b = Math.floor(255 * (1 - t) + 255 * t);
+                            color = `rgb(${r},${g},${b})`;
+                        }
+
+                        // Draw cell body
+                        ctx.fillStyle = color;
+                        ctx.globalAlpha = 0.3 + cell.q.surpriseFrac * 0.7;
+                        ctx.fillRect(x + 1, y + 1, CELL - 2, CELL - 2);
+                        ctx.globalAlpha = 1;
+
+                        // Draw border glow
+                        ctx.strokeStyle = color;
+                        ctx.lineWidth = 1.5;
+                        ctx.strokeRect(x + 1, y + 1, CELL - 2, CELL - 2);
+
+                        // Draw token initial
+                        if (cell.token && TOKENS[cell.token]) {
+                            ctx.fillStyle = '#fff';
+                            ctx.font = 'bold 8px "JetBrains Mono"';
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'middle';
+                            ctx.fillText(TOKENS[cell.token].short, x + CELL / 2, y + CELL / 2);
+                        }
+                    } else {
+                        // Dead cell — check for gap void marker
+                        if (gapVoidGrid[r] && gapVoidGrid[r][c]) {
+                            // Gap void — necessary structural emptiness
+                            ctx.fillStyle = '#1a0a1a';
+                            ctx.fillRect(x + 1, y + 1, CELL - 2, CELL - 2);
+                            // Pulsing border
+                            ctx.strokeStyle = 'rgba(255,102,255,' + (0.3 + 0.3 * Math.sin(gen * 0.5)) + ')';
+                            ctx.lineWidth = 1;
+                            ctx.strokeRect(x + 2, y + 2, CELL - 4, CELL - 4);
+                            // Ø symbol
+                            ctx.fillStyle = 'rgba(255,102,255,0.5)';
+                            ctx.font = 'bold 9px "JetBrains Mono"';
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'middle';
+                            ctx.fillText('Ø', x + CELL / 2, y + CELL / 2);
+                        } else {
+                            ctx.fillStyle = '#12121f';
+                            ctx.fillRect(x + 1, y + 1, CELL - 2, CELL - 2);
+                        }
+                    }
+                }
+            }
+
+            // Grid lines
+            ctx.strokeStyle = 'rgba(42,42,68,0.4)';
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= SIZE; i++) {
+                ctx.beginPath(); ctx.moveTo(i * CELL, 0); ctx.lineTo(i * CELL, SIZE * CELL); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(0, i * CELL); ctx.lineTo(SIZE * CELL, i * CELL); ctx.stroke();
+            }
+        }
+
+        // ═══════════════════════════════════════════════════
+        // UI
+        // ═══════════════════════════════════════════════════
+
+        function updateUI() {
+            document.getElementById('sGen').textContent = gen;
+            let alive = 0;
+            for (let r = 0; r < SIZE; r++)
+                for (let c = 0; c < SIZE; c++)
+                    if (isAlive(grid[r][c])) alive++;
+            document.getElementById('sAlive').textContent = alive;
+            document.getElementById('sSurv').textContent = lastStats.survived;
+            document.getElementById('sBred').textContent = lastStats.bred;
+            document.getElementById('sStarv').textContent = lastStats.starved;
+            document.getElementById('sTurb').textContent = lastStats.turbulent;
+            document.getElementById('sGap').textContent = lastStats.gapBlocked || 0;
+            document.getElementById('genBar').style.width = Math.min(100, gen * 2) + '%';
+        }
+
+        function buildPalette() {
+            const pal = document.getElementById('palette');
+            // Eraser first
+            const erBtn = document.createElement('button');
+            erBtn.className = 'token-btn eraser';
+            erBtn.textContent = '✖ ERASE';
+            erBtn.onclick = () => { isEraser = true; selectedToken = null; highlightPalette(); };
+            pal.appendChild(erBtn);
+
+            for (const name of TOKEN_NAMES) {
+                const btn = document.createElement('button');
+                btn.className = 'token-btn';
+                btn.textContent = name;
+                btn.style.borderBottomColor = TOKENS[name].color;
+                btn.style.borderBottomWidth = '3px';
+                btn.onclick = () => { isEraser = false; selectedToken = name; highlightPalette(); };
+                btn.dataset.token = name;
+                pal.appendChild(btn);
+            }
+            highlightPalette();
+        }
+
+        function highlightPalette() {
+            document.querySelectorAll('.token-btn').forEach(b => b.classList.remove('active'));
+            if (isEraser) {
+                document.querySelector('.token-btn.eraser').classList.add('active');
+            } else {
+                document.querySelectorAll('.token-btn').forEach(b => {
+                    if (b.dataset.token === selectedToken) b.classList.add('active');
+                });
+            }
+        }
+
+        // ═══════════════════════════════════════════════════
+        // CONTROLS
+        // ═══════════════════════════════════════════════════
+
+        function togglePlay() {
+            playing = !playing;
+            const btn = document.getElementById('btnPlay');
+            if (playing) {
+                btn.textContent = '⏸ Pause';
+                btn.classList.remove('play');
+                btn.classList.add('stop');
+                const speed = parseInt(document.getElementById('speed').value);
+                playInterval = setInterval(stepOnce, speed);
+            } else {
+                btn.textContent = '▶ Play';
+                btn.classList.remove('stop');
+                btn.classList.add('play');
+                clearInterval(playInterval);
+            }
+        }
+
+        function stepOnce() { step(); }
+
+        function clearGrid() {
+            if (playing) togglePlay();
+            initGrid();
+            updateUI();
+            render();
+        }
+
+        // ═══════════════════════════════════════════════════
+        // PRESETS
+        // ═══════════════════════════════════════════════════
+
+        function loadPreset(name) {
+            if (playing) togglePlay();
+            initGrid();
+
+            const cx = Math.floor(SIZE / 2), cy = Math.floor(SIZE / 2);
+
+            if (name === 'random') {
+                const toks = TOKEN_NAMES;
+                for (let r = 0; r < SIZE; r++)
+                    for (let c = 0; c < SIZE; c++)
+                        if (Math.random() < 0.3) {
+                            const t = toks[Math.floor(Math.random() * toks.length)];
+                            grid[r][c] = { q: TOKENS[t].q, token: t };
+                        }
+            } else if (name === 'ecosystem') {
+                const toks = TOKEN_NAMES;
+                let idx = 0;
+                const off = Math.floor((SIZE - 13) / 2);
+                for (let r = 0; r < 13; r++)
+                    for (let c = 0; c < 13; c++)
+                        if ((r + c) % 2 === 0) {
+                            const t = toks[idx % toks.length]; idx++;
+                            grid[off + r][off + c] = { q: TOKENS[t].q, token: t };
+                        }
+            } else if (name === 'mobius') {
+                const ring = [[-4, 0], [-3, 3], [0, 4], [3, 3], [4, 0], [3, -3], [0, -4], [-3, -3]];
+                ring.forEach(([dr, dc], i) => {
+                    const t = i % 2 === 0 ? 'SELF' : 'EXISTENCE';
+                    grid[cx + dr][cy + dc] = { q: TOKENS[t].q, token: t };
+                });
+            } else if (name === 'compass') {
+                [[-1, 0], [-2, 0]].forEach(([dr, dc]) => grid[cx + dr][cy + dc] = { q: TOKENS.TIME.q, token: 'TIME' });
+                [[0, 1], [0, 2]].forEach(([dr, dc]) => grid[cx + dr][cy + dc] = { q: TOKENS.IDENTITY.q, token: 'IDENTITY' });
+                [[1, 0], [2, 0]].forEach(([dr, dc]) => grid[cx + dr][cy + dc] = { q: TOKENS.EXISTENCE.q, token: 'EXISTENCE' });
+                [[0, -1], [0, -2]].forEach(([dr, dc]) => grid[cx + dr][cy + dc] = { q: TOKENS.SELF.q, token: 'SELF' });
+            } else if (name === 'glider') {
+                const t = 'IDENTITY';
+                [[1, 2], [2, 3], [3, 1], [3, 2], [3, 3]].forEach(([r, c]) => {
+                    grid[r][c] = { q: TOKENS[t].q, token: t };
+                });
+            } else if (name === 'resonance') {
+                const t1 = 'TIME', t2 = 'EXISTENCE';
+                [[-1, -1], [0, -1], [1, -1], [-1, 1], [0, 1], [1, 1]].forEach(([dr, dc], i) => {
+                    const t = i % 2 === 0 ? t1 : t2;
+                    grid[cx + dr][cy + dc] = { q: TOKENS[t].q, token: t };
+                });
+                [[-1, 0], [1, 0]].forEach(([dr, dc]) => {
+                    grid[cx + dr][cy + dc] = { q: TOKENS[t2].q, token: t2 };
+                });
+            }
+
+            updateUI(); render();
+        }
+
+        // ═══════════════════════════════════════════════════
+        // MOUSE INTERACTION
+        // ═══════════════════════════════════════════════════
+
+        let mouseDown = false;
+
+        canvas.addEventListener('mousedown', (e) => { mouseDown = true; paint(e); });
+        canvas.addEventListener('mousemove', (e) => { if (mouseDown) paint(e); });
+        canvas.addEventListener('mouseup', () => { mouseDown = false; });
+        canvas.addEventListener('mouseleave', () => { mouseDown = false; });
+
+        function paint(e) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const c = Math.floor((e.clientX - rect.left) * scaleX / CELL);
+            const r = Math.floor((e.clientY - rect.top) * scaleY / CELL);
+            if (r < 0 || r >= SIZE || c < 0 || c >= SIZE) return;
+
+            if (isEraser) {
+                grid[r][c] = null;
+            } else if (selectedToken && TOKENS[selectedToken]) {
+                grid[r][c] = { q: TOKENS[selectedToken].q, token: selectedToken };
+            }
+            render();
+            updateUI();
+        }
+
+        // Speed slider update while playing
+        document.getElementById('speed').addEventListener('input', () => {
+            if (playing) {
+                clearInterval(playInterval);
+                playInterval = setInterval(stepOnce, parseInt(document.getElementById('speed').value));
+            }
+        });
+
+        // ═══════════════════════════════════════════════════
+        // INIT
+        // ═══════════════════════════════════════════════════
+
+        initGrid();
+        buildPalette();
+        loadPreset('ecosystem');
+    </script>
+</body>
+
+</html>

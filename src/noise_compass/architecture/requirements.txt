@@ -1,0 +1,12 @@
+numpy
+scipy
+streamlit
+torch
+transformers
+sentence-transformers
+pathlib
+asyncio
+jsonlines
+accelerate
+rich
+pydantic

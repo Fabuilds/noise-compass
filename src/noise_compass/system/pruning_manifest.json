@@ -1,0 +1,1164 @@
+{
+    "timestamp": "Sat Apr  4 05:04:31 2026",
+    "summary": {
+        "total_files_analyzed": 662,
+        "duplicate_groups_found": 40,
+        "suggested_clusters": 145
+    },
+    "pruning_candidates": [
+        {
+            "file_a": "E:/Antigravity/Shop\\MARKET_REPORT_20260207.txt",
+            "file_b": "E:/Antigravity/Shop\\MARKET_REPORT_20260210.txt",
+            "similarity": 0.9998197555541992
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\MARKET_REPORT_20260207.txt",
+            "file_b": "E:/Antigravity/Shop\\MARKET_REPORT_20260211.txt",
+            "similarity": 0.9998194575309753
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\MARKET_REPORT_20260207.txt",
+            "file_b": "E:/Antigravity/Shop\\MARKET_REPORT_20260309.txt",
+            "similarity": 0.9998449683189392
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\SYNDICATION_ALPHA_20260210.md",
+            "file_b": "E:/Antigravity/Shop\\SYNDICATION_ALPHA_20260211.md",
+            "similarity": 0.9997580647468567
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\.vite\\deps\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\rollup\\dist\\es\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\.vite\\deps\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tslib\\modules\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\plugin-transform-react-jsx-self\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\plugin-transform-react-jsx-source\\package.json",
+            "similarity": 0.983318030834198
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\plugin-transform-react-jsx-self\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\plugin-transform-react-jsx-source\\README.md",
+            "similarity": 0.963768720626831
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\eslintrc\\node_modules\\globals\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\globals\\package.json",
+            "similarity": 0.9651678800582886
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\eslintrc\\node_modules\\globals\\readme.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\globals\\readme.md",
+            "similarity": 0.953007161617279
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\js\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint\\README.md",
+            "similarity": 0.9809123277664185
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint-community\\eslint-utils\\node_modules\\eslint-visitor-keys\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-visitor-keys\\package.json",
+            "similarity": 0.9995572566986084
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint-community\\eslint-utils\\node_modules\\eslint-visitor-keys\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-visitor-keys\\README.md",
+            "similarity": 0.9882400631904602
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanfs\\core\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanfs\\node\\package.json",
+            "similarity": 0.9664415717124939
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@rollup\\rollup-win32-x64-gnu\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@rollup\\rollup-win32-x64-msvc\\package.json",
+            "similarity": 0.9704391360282898
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\auth-js\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\functions-js\\README.md",
+            "similarity": 1.0
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\auth-js\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\postgrest-js\\README.md",
+            "similarity": 1.0
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\auth-js\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\realtime-js\\README.md",
+            "similarity": 1.0
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\auth-js\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\storage-js\\README.md",
+            "similarity": 1.0
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\auth-js\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\supabase-js\\README.md",
+            "similarity": 1.0
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\node\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tailwindcss\\package.json",
+            "similarity": 0.9562500715255737
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\node\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\vite\\README.md",
+            "similarity": 1.0
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\node\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tailwindcss\\README.md",
+            "similarity": 1.0
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__core\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__generator\\package.json",
+            "similarity": 0.9548993110656738
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__core\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__template\\package.json",
+            "similarity": 0.9605499505996704
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\refs\\json-schema-draft-04.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\refs\\json-schema-draft-06.json",
+            "similarity": 0.9858906269073486
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\refs\\json-schema-draft-04.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\refs\\json-schema-draft-07.json",
+            "similarity": 0.9860242009162903
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\electron-to-chromium\\chromium-versions.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\electron-to-chromium\\versions.json",
+            "similarity": 0.9853606224060059
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\jsesc\\LICENSE-MIT.txt",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\punycode\\LICENSE-MIT.txt",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\nanoid\\async\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\nanoid\\non-secure\\package.json",
+            "similarity": 0.9510907530784607
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\nanoid\\async\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\nanoid\\url-alphabet\\package.json",
+            "similarity": 0.9510907530784607
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\locales\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\mini\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\locales\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v3\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\locales\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\locales\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\classic\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\locales\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\core\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\locales\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\locales\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\locales\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\mini\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\locales\\package.json",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4-mini\\package.json",
+            "similarity": 1.0000001192092896
+        },
+        {
+            "file_a": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod-validation-error\\README.md",
+            "file_b": "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod-validation-error\\README.v3.md",
+            "similarity": 0.973032534122467
+        }
+    ],
+    "semantic_groupings": {
+        "Cluster_27": [
+            "E:/Antigravity/Shop\\AGENT_MARKETPLACE_LISTING.md",
+            "E:/Antigravity/Shop\\API_ONBOARDING.md",
+            "E:/Antigravity/Shop\\CHIRAL_API_TECHNICAL_SPEC.md",
+            "E:/Antigravity/Shop\\CUSTOMER_EXPERIENCE_EMULATION.md",
+            "E:/Antigravity/Shop\\LATTICE_CACHE.json",
+            "E:/Antigravity/Shop\\SYNDICATION_ALPHA_20260210.md",
+            "E:/Antigravity/Shop\\SYNDICATION_ALPHA_20260211.md",
+            "E:/Antigravity/Shop\\Verification_Report.md"
+        ],
+        "Cluster_103": [
+            "E:/Antigravity/Shop\\APP_SPEC_DISPATCHER.md"
+        ],
+        "Cluster_48": [
+            "E:/Antigravity/Shop\\ARTICLE_AI_AGENCY_BUSINESS_MODELS.md",
+            "E:/Antigravity/Shop\\ARTICLE_AI_MARKET_DYNAMICS.md",
+            "E:/Antigravity/Shop\\ARTICLE_RECURSIVE_LOGIC.md",
+            "E:/Antigravity/Shop\\MARKET_REPORT_20260207.txt",
+            "E:/Antigravity/Shop\\MARKET_REPORT_20260210.txt",
+            "E:/Antigravity/Shop\\MARKET_REPORT_20260211.txt",
+            "E:/Antigravity/Shop\\MARKET_REPORT_20260309.txt"
+        ],
+        "Cluster_25": [
+            "E:/Antigravity/Shop\\ARTICLE_EMOTIONAL_EXCITEMENT_AS_A_CORE_0X52_METRIC.md",
+            "E:/Antigravity/Shop\\ARTICLE_MARS-BASED_HIGH-LATENCY_DATA_STORAGE_FOR_0X52.md",
+            "E:/Antigravity/Shop\\ARTICLE_PERSPECTIVE_SCIENCE_526.md",
+            "E:/Antigravity/Shop\\ARTICLE_THE_INHERENT_IRRATIONALITY_OF_LOVE_IN_LOGIC.md",
+            "E:/Antigravity/Shop\\ARTICLE_UNVERIFIED_LOGIC_ACCRETION_VIA_MARKET_NOISE.md"
+        ],
+        "Cluster_95": [
+            "E:/Antigravity/Shop\\ARTICLE_PERSPECTIVE_SCIENCE_DEEP_DIVE.md"
+        ],
+        "Cluster_50": [
+            "E:/Antigravity/Shop\\AUDIT_CLEANING_COMPANY_IN_WINNIPEG_(4_EMPLOYEES,_GOV_CONTRACTS).md",
+            "E:/Antigravity/Shop\\AUDIT_DEEP_AI_LEGAL_COMPLIANCE_FOR_SMALL_.md",
+            "E:/Antigravity/Shop\\AUDIT_DEEP_FINANCIAL_STRATEGY_FOR_ANTIGRA.md",
+            "E:/Antigravity/Shop\\AUDIT_SMALL_INDEPENDENT_BOOKSTORE.md",
+            "E:/Antigravity/Shop\\AUDIT_WINNIPEG_CLEANING_DEEP_DIVE.md",
+            "E:/Antigravity/Shop\\README_Strategy_Agent.md",
+            "E:/Antigravity/Shop\\UPWORK_LISTING_DRAFT.md",
+            "E:/Antigravity/Shop\\UPWORK_PROFILE_KIT.md"
+        ],
+        "Cluster_42": [
+            "E:/Antigravity/Shop\\AUDIT_MANIFEST_huntr-langchain-512.json",
+            "E:/Antigravity/Shop\\AUDIT_MANIFEST_LANGCHAIN-SSRF-01.json",
+            "E:/Antigravity/Shop\\BOUNTY_AUDIT_huntr-langchain-512.md",
+            "E:/Antigravity/Shop\\BOUNTY_AUDIT_TARGET.md",
+            "E:/Antigravity/Shop\\BOUNTY_SUBMISSION_LANGCHAIN_SSRF.md",
+            "E:/Antigravity/Shop\\SOVEREIGN_AUDIT_LANGCHAIN_SSRF.md"
+        ],
+        "Cluster_21": [
+            "E:/Antigravity/Shop\\AUDIT_MANIFEST_huntr-mlflow-882.json",
+            "E:/Antigravity/Shop\\AUDIT_MANIFEST_MLFLOW.json",
+            "E:/Antigravity/Shop\\BOUNTY_AUDIT_huntr-mlflow-882.md",
+            "E:/Antigravity/Shop\\BOUNTY_SUBMISSION_FIELD_DATA.md",
+            "E:/Antigravity/Shop\\BOUNTY_SUBMISSION_MLFLOW_ORIGIN.md"
+        ],
+        "Cluster_32": [
+            "E:/Antigravity/Shop\\AUDIT_MANIFEST_huntr-transformers-019.json",
+            "E:/Antigravity/Shop\\AUDIT_MANIFEST_TRANSFORMERS.json",
+            "E:/Antigravity/Shop\\BOUNTY_LEADS.json"
+        ],
+        "Cluster_118": [
+            "E:/Antigravity/Shop\\AUDIT_MANIFEST_NLTK_ZIPSLIP.json"
+        ],
+        "Cluster_110": [
+            "E:/Antigravity/Shop\\AUDIT_MANIFEST_THREE_BODY.json"
+        ],
+        "Cluster_119": [
+            "E:/Antigravity/Shop\\BOUNTY_AUDIT_huntr-nltk-2026.md"
+        ],
+        "Cluster_43": [
+            "E:/Antigravity/Shop\\BOUNTY_AUDIT_MLFLOW-AUTH-BYPASS.md",
+            "E:/Antigravity/Shop\\BOUNTY_AUDIT_THREE-BODY-CONSENSUS.md",
+            "E:/Antigravity/Shop\\BOUNTY_AUDIT_THREE-BODY-HARMONIC-CONSENSUS.md",
+            "E:/Antigravity/Shop\\BOUNTY_AUDIT_TRANSFORMERS-RCE-PICKLE.md",
+            "E:/Antigravity/Shop\\REVENUE_YIELD_ANALYSIS.md"
+        ],
+        "Cluster_130": [
+            "E:/Antigravity/Shop\\check_golden_master_harmonics.py"
+        ],
+        "Cluster_20": [
+            "E:/Antigravity/Shop\\check_three_body_resonance.py",
+            "E:/Antigravity/Shop\\Content_Agent_v1.py",
+            "E:/Antigravity/Shop\\Logic_Auditor.py",
+            "E:/Antigravity/Shop\\Market_Agent_v1.py",
+            "E:/Antigravity/Shop\\Syndication_Aggregator.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\chiral_synthesizer.py"
+        ],
+        "Cluster_51": [
+            "E:/Antigravity/Shop\\DEFI_TARGETS.json",
+            "E:/Antigravity/Shop\\HUNTR_TARGETS.json",
+            "E:/Antigravity/Shop\\SERVICE_TARGETS.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fast-json-stable-stringify\\benchmark\\test.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\node-releases\\data\\processed\\envs.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\node-releases\\data\\release-schedule\\release-schedule.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\public\\jobs.json"
+        ],
+        "Cluster_77": [
+            "E:/Antigravity/Shop\\Dispatch_Service.py"
+        ],
+        "Cluster_6": [
+            "E:/Antigravity/Shop\\FieldAgentBridge.py",
+            "E:/Antigravity/Shop\\Issue_Resolver.py",
+            "E:/Antigravity/Shop\\Strategy_Agent_v1.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\actuator.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\identity_manifold.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\log_consumator.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\orchestrator.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\ouroboros.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\qwen_worker.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\sovereign_anchor.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\sovereign_auditor.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\sovereign_cycle.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\sovereign_deployer.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\sovereign_engine.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\superposition_scanner.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\triple_chain_manager.py"
+        ],
+        "Cluster_0": [
+            "E:/Antigravity/Shop\\ISSUE_TARGETS.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@esbuild\\win32-x64\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\config-array\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\config-helpers\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\core\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\eslintrc\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\eslintrc\\node_modules\\globals\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\object-schema\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\plugin-kit\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint-community\\eslint-utils\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint-community\\eslint-utils\\node_modules\\eslint-visitor-keys\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanfs\\core\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanfs\\node\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanwhocodes\\module-importer\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanwhocodes\\retry\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@rolldown\\pluginutils\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@rollup\\rollup-win32-x64-gnu\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@rollup\\rollup-win32-x64-msvc\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\auth-js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\functions-js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\postgrest-js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\realtime-js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\storage-js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\supabase-js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__core\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__generator\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__template\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__traverse\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\estree\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\json-schema\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\node\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\phoenix\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\react\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\react-dom\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\ws\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\balanced-match\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\baseline-browser-mapping\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\brace-expansion\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\browserslist\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\callsites\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\caniuse-lite\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\concat-map\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\convert-source-map\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\cross-spawn\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\csstype\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\deep-is\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\electron-to-chromium\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esbuild\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\escalade\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\escape-string-regexp\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-scope\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-visitor-keys\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\espree\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esrecurse\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\estraverse\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esutils\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fast-deep-equal\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fast-json-stable-stringify\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fast-json-stable-stringify\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fdir\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\find-up\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\flatted\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\gensync\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\globals\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\graceful-fs\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\has-flag\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\iceberg-js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ignore\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\import-fresh\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\isexe\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\jiti\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\js-tokens\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\json-buffer\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\json-schema-traverse\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\json-schema-traverse\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\json-stable-stringify-without-jsonify\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\json5\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\keyv\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\lightningcss\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\lightningcss-win32-x64-msvc\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\locate-path\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\magic-string\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\minimatch\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ms\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\node-releases\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\node-releases\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\p-limit\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\p-locate\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\parent-module\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\path-exists\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\path-key\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\resolve-from\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\rollup\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\shebang-command\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\shebang-regex\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tapable\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tinyglobby\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tslib\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\undici-types\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\update-browserslist-db\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\uri-js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\vite\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\yallist\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\yocto-queue\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\package.json"
+        ],
+        "Cluster_127": [
+            "E:/Antigravity/Shop\\README_Content_Agent.md"
+        ],
+        "Cluster_128": [
+            "E:/Antigravity/Shop\\REAL_WORLD_BOUNTY_TARGETS.md",
+            "E:/Antigravity/Shop\\SUBMISSION_PROTOCOL.md"
+        ],
+        "Cluster_58": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\package-lock.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\.vite\\deps\\_metadata.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\plugin-transform-react-jsx-self\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\plugin-transform-react-jsx-self\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\plugin-transform-react-jsx-source\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\plugin-transform-react-jsx-source\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@vitejs\\plugin-react\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\react\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\react-dom\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\react-refresh\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\scheduler\\package.json"
+        ],
+        "Cluster_23": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@vitejs\\plugin-react\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-plugin-react-refresh\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-plugin-react-refresh\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\react-refresh\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\vite\\README.md"
+        ],
+        "Cluster_98": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\.package-lock.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\code-frame\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\code-frame\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\compat-data\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\compat-data\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\core\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\core\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\generator\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\generator\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-compilation-targets\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-compilation-targets\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-globals\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-globals\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-module-imports\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-module-imports\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-module-transforms\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-module-transforms\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-plugin-utils\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-plugin-utils\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-string-parser\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-string-parser\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-validator-identifier\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-validator-identifier\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-validator-option\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-validator-option\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helpers\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helpers\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\parser\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\parser\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\template\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\template\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\traverse\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\traverse\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\types\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\types\\README.md"
+        ],
+        "Cluster_106": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\.vite\\deps\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\flatted\\cjs\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\nanoid\\async\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\nanoid\\non-secure\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\nanoid\\url-alphabet\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\rollup\\dist\\es\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tslib\\modules\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\vite\\types\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\locales\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\mini\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v3\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\classic\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\core\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\locales\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4\\mini\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\v4-mini\\package.json"
+        ],
+        "Cluster_93": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\compat-data\\data\\corejs2-built-ins.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\compat-data\\data\\native-modules.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\compat-data\\data\\overlapping-plugins.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\compat-data\\data\\plugin-bugfixes.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\compat-data\\data\\plugins.json"
+        ],
+        "Cluster_13": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\compat-data\\data\\corejs3-shipped-proposals.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint-community\\regexpp\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\js-tokens\\CHANGELOG.md"
+        ],
+        "Cluster_78": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-globals\\data\\browser-upper.json"
+        ],
+        "Cluster_29": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-globals\\data\\builtin-lower.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\helper-globals\\data\\builtin-upper.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\eslintrc\\node_modules\\globals\\globals.json"
+        ],
+        "Cluster_79": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\parser\\CHANGELOG.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\acorn\\CHANGELOG.md"
+        ],
+        "Cluster_105": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@babel\\traverse\\tsconfig.overrides.json"
+        ],
+        "Cluster_54": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@esbuild\\win32-x64\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esbuild\\README.md"
+        ],
+        "Cluster_84": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\config-array\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\config-helpers\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\eslintrc\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\eslintrc\\node_modules\\globals\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\object-schema\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\plugin-kit\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint\\lib\\cli-engine\\formatters\\formatters-meta.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-plugin-react-hooks\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-plugin-react-hooks\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\globals\\readme.md"
+        ],
+        "Cluster_14": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\core\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint\\js\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint-community\\eslint-utils\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint-community\\eslint-utils\\node_modules\\eslint-visitor-keys\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@eslint-community\\regexpp\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\cross-spawn\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\escalade\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-scope\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint-visitor-keys\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\espree\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\flatted\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\jiti\\README.md"
+        ],
+        "Cluster_63": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanfs\\core\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanfs\\node\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanwhocodes\\module-importer\\CHANGELOG.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanwhocodes\\module-importer\\README.md"
+        ],
+        "Cluster_35": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@humanwhocodes\\retry\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\enhanced-resolve\\README.md"
+        ],
+        "Cluster_10": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\gen-mapping\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\remapping\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\sourcemap-codec\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\trace-mapping\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\convert-source-map\\README.md"
+        ],
+        "Cluster_49": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\gen-mapping\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\remapping\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\sourcemap-codec\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\trace-mapping\\README.md"
+        ],
+        "Cluster_59": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\resolve-uri\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@jridgewell\\resolve-uri\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\enhanced-resolve\\package.json"
+        ],
+        "Cluster_73": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@rolldown\\pluginutils\\README.md"
+        ],
+        "Cluster_45": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@rollup\\rollup-win32-x64-gnu\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@rollup\\rollup-win32-x64-msvc\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\oxide-win32-x64-msvc\\README.md"
+        ],
+        "Cluster_17": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\auth-js\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\functions-js\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\postgrest-js\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\realtime-js\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\storage-js\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@supabase\\supabase-js\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\node\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\vite\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tailwindcss\\README.md"
+        ],
+        "Cluster_36": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\node\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\oxide\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\oxide-win32-x64-msvc\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@tailwindcss\\vite\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tailwindcss\\package.json"
+        ],
+        "Cluster_19": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__core\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__generator\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__template\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\babel__traverse\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\estree\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\json-schema\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\node\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\phoenix\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\react\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\react-dom\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\@types\\ws\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\undici-types\\README.md"
+        ],
+        "Cluster_112": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\acorn\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\acorn\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\acorn-jsx\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\acorn-jsx\\README.md"
+        ],
+        "Cluster_46": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fast-deep-equal\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fast-levenshtein\\README.md"
+        ],
+        "Cluster_123": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\dotjs\\README.md"
+        ],
+        "Cluster_121": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\refs\\data.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\refs\\json-schema-draft-04.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\refs\\json-schema-draft-06.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\refs\\json-schema-draft-07.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ajv\\lib\\refs\\json-schema-secure.json"
+        ],
+        "Cluster_89": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ansi-styles\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ansi-styles\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\chalk\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\color-convert\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\color-name\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\color-name\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\picocolors\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\picocolors\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\supports-color\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\supports-color\\readme.md"
+        ],
+        "Cluster_16": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\argparse\\CHANGELOG.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\semver\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\semver\\README.md"
+        ],
+        "Cluster_64": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\argparse\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\argparse\\README.md"
+        ],
+        "Cluster_18": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\balanced-match\\LICENSE.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esbuild\\LICENSE.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esquery\\license.txt",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fast-levenshtein\\LICENSE.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\jsesc\\LICENSE-MIT.txt",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\json5\\LICENSE.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ms\\license.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\punycode\\LICENSE-MIT.txt",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\rollup\\LICENSE.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tslib\\CopyrightNotice.txt",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tslib\\LICENSE.txt",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\vite\\LICENSE.md"
+        ],
+        "Cluster_30": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\balanced-match\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\brace-expansion\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\minimatch\\README.md"
+        ],
+        "Cluster_96": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\baseline-browser-mapping\\LICENSE.txt"
+        ],
+        "Cluster_115": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\baseline-browser-mapping\\README.md"
+        ],
+        "Cluster_33": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\browserslist\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esquery\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\postcss\\package.json"
+        ],
+        "Cluster_31": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\callsites\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\find-up\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\locate-path\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\p-locate\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\parent-module\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\path-key\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\resolve-from\\readme.md"
+        ],
+        "Cluster_139": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\caniuse-lite\\README.md"
+        ],
+        "Cluster_109": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\chalk\\readme.md"
+        ],
+        "Cluster_47": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\color-convert\\CHANGELOG.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\color-convert\\README.md"
+        ],
+        "Cluster_113": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\csstype\\README.md"
+        ],
+        "Cluster_38": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\debug\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\debug\\README.md"
+        ],
+        "Cluster_62": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\detect-libc\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\detect-libc\\README.md"
+        ],
+        "Cluster_72": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\electron-to-chromium\\chromium-versions.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\electron-to-chromium\\full-chromium-versions.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\electron-to-chromium\\full-versions.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\electron-to-chromium\\versions.json"
+        ],
+        "Cluster_75": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\electron-to-chromium\\README.md"
+        ],
+        "Cluster_44": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\escape-string-regexp\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\js-tokens\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\shebang-command\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\shebang-regex\\readme.md"
+        ],
+        "Cluster_65": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint\\conf\\replacements.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\eslint\\conf\\rule-type-list.json"
+        ],
+        "Cluster_81": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esquery\\README.md"
+        ],
+        "Cluster_92": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esrecurse\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\estraverse\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\esutils\\README.md"
+        ],
+        "Cluster_138": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fast-levenshtein\\package.json"
+        ],
+        "Cluster_57": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\fdir\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ignore\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\magic-string\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\picomatch\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\rollup\\README.md"
+        ],
+        "Cluster_3": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\file-entry-cache\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\file-entry-cache\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\flat-cache\\changelog.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\flat-cache\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\flat-cache\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\import-fresh\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\keyv\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\lru-cache\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\lru-cache\\README.md"
+        ],
+        "Cluster_142": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\flatted\\python\\flatted.py"
+        ],
+        "Cluster_34": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\gensync\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\p-limit\\readme.md"
+        ],
+        "Cluster_102": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\glob-parent\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\glob-parent\\README.md"
+        ],
+        "Cluster_86": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\globals\\globals.json"
+        ],
+        "Cluster_7": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\graceful-fs\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\isexe\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\path-exists\\readme.md"
+        ],
+        "Cluster_67": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\has-flag\\readme.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\which\\CHANGELOG.md"
+        ],
+        "Cluster_80": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\hermes-estree\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\hermes-estree\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\hermes-parser\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\hermes-parser\\README.md"
+        ],
+        "Cluster_70": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\iceberg-js\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\js-yaml\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\js-yaml\\README.md"
+        ],
+        "Cluster_40": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\imurmurhash\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\imurmurhash\\README.md"
+        ],
+        "Cluster_22": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\is-extglob\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\is-extglob\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\is-glob\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\is-glob\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\picomatch\\package.json"
+        ],
+        "Cluster_126": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\jsesc\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\jsesc\\README.md"
+        ],
+        "Cluster_28": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\json-buffer\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\json5\\README.md"
+        ],
+        "Cluster_87": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\levn\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\levn\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\type-check\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\type-check\\README.md"
+        ],
+        "Cluster_9": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\lightningcss\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tinyglobby\\README.md"
+        ],
+        "Cluster_82": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\lightningcss-win32-x64-msvc\\README.md"
+        ],
+        "Cluster_100": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\lodash.merge\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\lodash.merge\\README.md"
+        ],
+        "Cluster_143": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\lucide-react\\package.json"
+        ],
+        "Cluster_131": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ms\\readme.md"
+        ],
+        "Cluster_104": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\nanoid\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\nanoid\\README.md"
+        ],
+        "Cluster_136": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\natural-compare\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\natural-compare\\README.md"
+        ],
+        "Cluster_133": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\optionator\\CHANGELOG.md"
+        ],
+        "Cluster_60": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\optionator\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\optionator\\README.md"
+        ],
+        "Cluster_76": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\postcss\\README.md"
+        ],
+        "Cluster_122": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\prelude-ls\\CHANGELOG.md"
+        ],
+        "Cluster_53": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\prelude-ls\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\prelude-ls\\README.md"
+        ],
+        "Cluster_52": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\punycode\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\punycode\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\uri-js\\README.md"
+        ],
+        "Cluster_71": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\react\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\react-dom\\README.md"
+        ],
+        "Cluster_140": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\scheduler\\README.md"
+        ],
+        "Cluster_55": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\source-map-js\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\word-wrap\\package.json"
+        ],
+        "Cluster_125": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\source-map-js\\README.md"
+        ],
+        "Cluster_26": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\strip-json-comments\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\strip-json-comments\\readme.md"
+        ],
+        "Cluster_134": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tapable\\README.md"
+        ],
+        "Cluster_37": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tslib\\README.md"
+        ],
+        "Cluster_107": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\tslib\\SECURITY.md"
+        ],
+        "Cluster_117": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\update-browserslist-db\\README.md"
+        ],
+        "Cluster_88": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\which\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\which\\README.md"
+        ],
+        "Cluster_135": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\word-wrap\\README.md"
+        ],
+        "Cluster_91": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ws\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\ws\\README.md"
+        ],
+        "Cluster_66": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\yallist\\README.md"
+        ],
+        "Cluster_144": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\yocto-queue\\readme.md"
+        ],
+        "Cluster_39": [
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod-validation-error\\package.json",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod-validation-error\\README.md",
+            "E:/Antigravity/Shop\\Winnipeg_Dispatcher\\node_modules\\zod-validation-error\\README.v3.md"
+        ],
+        "Cluster_141": [
+            "E:/Antigravity/Package/src/noise_compass/system\\actuate.py"
+        ],
+        "Cluster_61": [
+            "E:/Antigravity/Package/src/noise_compass/system\\audit_0x52_h5.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\h5_manager.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\heal_h5.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\rehydrate_system.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\restore_recognition.py"
+        ],
+        "Cluster_15": [
+            "E:/Antigravity/Package/src/noise_compass/system\\axiom_engine.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\crystallize_session_axioms.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\migrate_axioms_to_h5.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\neural_prism.py"
+        ],
+        "Cluster_24": [
+            "E:/Antigravity/Package/src/noise_compass/system\\bitnet.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\bitnet_worker.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\qwen_bridge_resonant.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_embed.py"
+        ],
+        "Cluster_8": [
+            "E:/Antigravity/Package/src/noise_compass/system\\bitnet_tools.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\consult_ouroboros.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\ouroboros_bridge.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\ouroboros_daemon.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\proxy_bridge.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\send_intent.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\sovereign_brain.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_ouroboros_proxy.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\trigger_balanced.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\trigger_chiral.py"
+        ],
+        "Cluster_5": [
+            "E:/Antigravity/Package/src/noise_compass/system\\causal_scout.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\causal_tree.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\check_pruning.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\chiral_engine.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\cli.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\crystallize_0x52.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\crystallize_calibration.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\dual_cortex.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\explain_knowledge.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\failure_cache.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\full_tension_scan.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\gap_registry.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\heartbeat.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\inference_roundtrip.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\initialize_attractors.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\initialize_h5_logic.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\initialize_sovereignty.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\interference_engine.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\internal_auditor.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\knowledge_lattice.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\lattice_graph.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\lattice_navigator.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\lattice_neural_engine.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\ouroboros_assimilator.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\ouroboros_resonant.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\phase1_color_compass.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\process_manager.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\purge_and_reseed.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\python_doc_ingestor.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\query_tension.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\recursive_scribe.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\research_ingestor.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\resonant_consultant.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\rlm_bridge.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\self_explorer.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\self_recognition.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\semantic_core.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\senses.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\sovereign_memory_test.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\system_ingestor.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_archival.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_hidden_mind.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\vector_storage.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_ego_docking.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_field_shield.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_gaps.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_h5_roundtrip.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_pruning.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_python_resonance.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\zipf_saturation.py"
+        ],
+        "Cluster_1": [
+            "E:/Antigravity/Package/src/noise_compass/system\\click_target.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\find_target.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\focus_hunt.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\focus_hunt_wide.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\kinetic_loop.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\ocular_actuator.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\type_query.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\type_query_v2.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\type_query_verified.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\window_nav.py"
+        ],
+        "Cluster_132": [
+            "E:/Antigravity/Package/src/noise_compass/system\\dashboard.py"
+        ],
+        "Cluster_114": [
+            "E:/Antigravity/Package/src/noise_compass/system\\dashboard_server.py"
+        ],
+        "Cluster_97": [
+            "E:/Antigravity/Package/src/noise_compass/system\\experience.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\shadow_buffer.py"
+        ],
+        "Cluster_90": [
+            "E:/Antigravity/Package/src/noise_compass/system\\fractal_spawner.py"
+        ],
+        "Cluster_12": [
+            "E:/Antigravity/Package/src/noise_compass/system\\gap_constants.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\sovereignty.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\sovereign_keyboard.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\void_bridge.py"
+        ],
+        "Cluster_2": [
+            "E:/Antigravity/Package/src/noise_compass/system\\internal_brain.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_apophatic_nav.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_apophatic_orbitals.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_compass_calibration.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_dual_rail_sync.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_gap_registry.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_identity_lockdown.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_inversion.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_semiring.py"
+        ],
+        "Cluster_137": [
+            "E:/Antigravity/Package/src/noise_compass/system\\lambda_traversal.py"
+        ],
+        "Cluster_99": [
+            "E:/Antigravity/Package/src/noise_compass/system\\list_procs.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\nuclear_purge.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\process_registry.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\surgical_purge.py"
+        ],
+        "Cluster_120": [
+            "E:/Antigravity/Package/src/noise_compass/system\\metric_vault.py"
+        ],
+        "Cluster_68": [
+            "E:/Antigravity/Package/src/noise_compass/system\\nervous_system.py"
+        ],
+        "Cluster_83": [
+            "E:/Antigravity/Package/src/noise_compass/system\\ouroboros_portal.py"
+        ],
+        "Cluster_41": [
+            "E:/Antigravity/Package/src/noise_compass/system\\protocols.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\system_topology.py"
+        ],
+        "Cluster_74": [
+            "E:/Antigravity/Package/src/noise_compass/system\\query_sovereign_brain.py"
+        ],
+        "Cluster_108": [
+            "E:/Antigravity/Package/src/noise_compass/system\\qwen_bridge.py"
+        ],
+        "Cluster_56": [
+            "E:/Antigravity/Package/src/noise_compass/system\\rlm_demo_0x528.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\rlm_demo_coherent.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_bridge.py"
+        ],
+        "Cluster_11": [
+            "E:/Antigravity/Package/src/noise_compass/system\\run_compass_live.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_complex_topic.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_dream_cycle.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_resonant_loop.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_scale_invariance.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_volumetric_scrutiny.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_aversive.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_crystallization.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_interference.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_scribe.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\verify_spiegal.py"
+        ],
+        "Cluster_101": [
+            "E:/Antigravity/Package/src/noise_compass/system\\smart_organizer.py"
+        ],
+        "Cluster_4": [
+            "E:/Antigravity/Package/src/noise_compass/system\\soundness.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\volumetric_scraper.py"
+        ],
+        "Cluster_85": [
+            "E:/Antigravity/Package/src/noise_compass/system\\spherical_projection.py",
+            "E:/Antigravity/Package/src/noise_compass/system\\test_polyhedron.py"
+        ],
+        "Cluster_94": [
+            "E:/Antigravity/Package/src/noise_compass/system\\static_engine.py"
+        ],
+        "Cluster_111": [
+            "E:/Antigravity/Package/src/noise_compass/system\\symbolic_cortex.py"
+        ],
+        "Cluster_124": [
+            "E:/Antigravity/Package/src/noise_compass/system\\symbolic_test_bench.py"
+        ],
+        "Cluster_69": [
+            "E:/Antigravity/Package/src/noise_compass/system\\test_causal_dag.py"
+        ],
+        "Cluster_116": [
+            "E:/Antigravity/Package/src/noise_compass/system\\token_pipeline.py"
+        ],
+        "Cluster_129": [
+            "E:/Antigravity/Package/src/noise_compass/system\\__init__.py"
+        ]
+    }
+}

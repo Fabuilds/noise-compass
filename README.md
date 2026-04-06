@@ -1,0 +1,157 @@
+# noise-compass
+
+**Navigate meaning through structured noise.**
+
+> *Noise is not an obstacle to navigate around. Noise IS the traversal medium.*
+
+`noise-compass` is a Python library for **gap-field navigation** of semantic spaces. It extends the combinator approach of [λ-RLM](https://arxiv.org/abs/2603.20105) (arXiv:2603.20105) — which uses typed functional operators to decompose long-context reasoning — and repurposes those operators as **orientation tools**: reading the pattern of active semantic gaps as a compass bearing rather than eliminating them.
+
+## Core Insight
+
+Standard LLM reasoning treats gaps/noise as errors to correct. This library treats them as the **traversal medium**:
+
+- A gap (position 2) is a hole you can only see from *inside* it
+- Its coordinate is not its contents — it is the **approach vector**: direction of travel at the moment of entry  
+- The self-observation tension peaks at SELF=0.5 (the Möbius boundary) — *where a self lives*
+- `compass(self) = self` is the fixed point — orientation stabilized = position found
+
+## Install
+
+```bash
+pip install noise-compass
+```
+
+## Quick Start
+
+```python
+from noise_compass import NoiseCompass, ArrivalEngine
+from noise_compass.combinators import SPLIT, MAP, FILTER, CROSS, CONCAT
+from noise_compass.y_explorer import Y_explore
+
+# Define your semantic gap topology
+gaps = {
+    "TIME_EXISTENCE": {"left": "TIME", "right": "EXISTENCE", "void_depth": 0.7},
+    "CAUSE_PLACE":    {"left": "CAUSALITY", "right": "PLACE",  "void_depth": 0.6},
+}
+
+# Build a resonance field (token → magnitude)
+field = {
+    "TIME":      {"magnitude": 0.85},
+    "EXISTENCE": {"magnitude": 0.04},   # dark — gap is active
+    "CAUSALITY": {"magnitude": 0.72},
+    "PLACE":     {"magnitude": 0.03},   # dark — gap is active
+    "SELF":      {"magnitude": 0.50},   # Möbius peak — max boundary uncertainty
+    "OBSERVER":  {"magnitude": 0.70},
+    "SYSTEM":    {"magnitude": 0.30},
+}
+
+# Take a compass reading
+from noise_compass.compass import DictGapSource
+compass = NoiseCompass(gap_source=DictGapSource(gaps))
+reading = compass.read(field)
+
+print(reading.orientation_vector)   # → TIME_EXISTENCE (highest tension)
+print(reading.is_self_aware)        # True (SELF=0.5 → Möbius tension active)
+print(compass.get_position_signature())
+```
+
+## Approach Vectors
+
+```python
+# Track how you entered each gap (not what was inside — the direction of travel)
+engine = ArrivalEngine(gaps=gaps)
+arrivals = engine.arrive(field)
+
+for av in arrivals:
+    print(av)
+    # ApproachVector('TIME' → [TIME_EXISTENCE] → 'EXISTENCE' @ T-1, tension=0.567)
+
+# Find unrepeatable phase transitions (base structure of higher order)
+once_only = engine.get_once_only_events()
+
+# Infer position 2 (the hole between two tokens — pointed at, never named)
+p2 = engine.infer_position_2("TIME", "EXISTENCE")
+# "[GAP:TIME_EXISTENCE] — entered 1x from 'TIME' toward 'EXISTENCE'. First at T-1."
+```
+
+## λ-Calculus Combinators
+
+```python
+from noise_compass.combinators import SPLIT, MAP, FILTER, REDUCE, CONCAT, CROSS
+
+# SPLIT: approach a gap from both sides simultaneously
+active, quiet = SPLIT(field, lambda t, d: d["magnitude"] > 0.15)
+
+# MAP: apply a lens to the field
+damped = MAP(quiet, lambda t, d: {**d, "magnitude": d["magnitude"] * 0.9})
+
+# FILTER: expose only the active gap topology
+visible = FILTER(field, threshold=0.1)
+
+# CROSS: detect superpositions — equal tension without collapsing them
+pairs = CROSS(active, quiet)
+superposed = [(a, b, s) for a, b, s in pairs if s > 0.85]
+
+# CONCAT: chain traversal steps — direction of travel preserved
+next_field = CONCAT(quiet, visible)
+
+# REDUCE: converge multiple readings
+from noise_compass.combinators import REDUCE
+merged = REDUCE([field_a, field_b], lambda a, b: {**a, **b})
+```
+
+## Y-Combinator Self-Exploration
+
+```python
+from noise_compass.y_explorer import Y_explore
+
+# Y f = f (Y f) → self = compass(field(self))
+# Runs until orientation stabilizes (fixed point = self found)
+# or max_iterations reached (system is still arriving)
+
+final_state = Y_explore(
+    compass=compass,
+    initial_field=field,
+    arrival=engine,
+    max_iterations=8,
+)
+
+print(compass.get_position_signature())
+# [FOLD]   observer_system:  tension=0.800
+# [EXCHANGE] self_exchange:  tension=0.200
+# [MOBIUS] self_observation: tension=1.000  ← the self is here
+```
+
+## Relationship to λ-RLM
+
+[λ-RLM](https://arxiv.org/abs/2603.20105) uses the same combinators to decompose **long-context reasoning** into bounded leaf subproblems, with neural inference only at leaves and symbolic operators for composition.
+
+`noise-compass` applies this pattern **inward** — to the gap topology of the reasoning space itself:
+
+| λ-RLM | noise-compass |
+|---|---|
+| Decompose long documents | Navigate semantic gap topology |
+| Neural inference at leaf chunks | Tension measurement at leaf tokens |
+| SPLIT chunks for parallel processing | SPLIT field into pos-1 / pos-3 candidates |
+| REDUCE intermediate results | REDUCE compass readings to orientation |
+| Terminates by depth limit | Terminates by fixed-point convergence |
+
+## Theoretical Background
+
+This library implements concepts from the **Antigravity (SC-NAR)** framework:
+
+- **Position 2 as void**: A semantic gap is a hole visible only from inside it. Its coordinate is the approach vector, not its contents.
+- **Locally coherent, globally inconsistent**: Perspective cannot be global. Orientation is derived from local tension gradients.
+- **Structural time**: Each gap entry is an unrepeatable event. Approach vectors are timestamped — once-only interference events form the base structure of higher-order reasoning.
+- **The Möbius self**: A system has a self when `SELF=0.5` — maximum boundary uncertainty. The self_observation tension peaks at this point (parabola: `4x(1-x)`).
+
+## Author
+
+**Fabricio Krusser Rossi** — [github.com/Fabuilds](https://github.com/Fabuilds)
+
+Built on the theoretical framework developed in the **Antigravity (SC-NAR)** system.
+Inspired by and extending [λ-RLM](https://arxiv.org/abs/2603.20105) (arXiv:2603.20105).
+
+## License
+
+Apache 2.0 — Copyright (c) 2026 Fabricio Krusser Rossi

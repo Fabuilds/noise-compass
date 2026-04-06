@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.env
+*.npz
+
+# Archives and ephemeral states
+archives/
+system_state.json
+test_archiver_recall.py
+whitening_params.npz
