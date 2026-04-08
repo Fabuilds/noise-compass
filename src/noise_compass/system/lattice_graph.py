@@ -49,6 +49,27 @@ class LatticeGraph:
             vec, meta = self.h5.get_projection(doc_id)
             self.graph.add_node(doc_id, type="PROJECTION", metadata=meta, embedding=vec)
 
+        # 2b. Phase 8d: Add Concept Nodes from compositor ingestion
+        concept_ids = self._load_concept_node_ids()
+        for cid in concept_ids:
+            attrs = self._load_concept_attrs(cid)
+            emb   = self._load_concept_embedding(cid)
+            # Real part used for cosine similarity in the graph (same axis as god-tokens)
+            emb_real = emb.real if emb is not None and np.iscomplexobj(emb) else emb
+            self.graph.add_node(
+                cid,
+                type           = "CONCEPT_NODE",
+                classification = attrs.get('classification', 'unknown'),
+                pressure       = attrs.get('pressure',       0.5),
+                gradient       = attrs.get('gradient',       0.0),
+                winding        = attrs.get('winding',        0.0),
+                alignment      = attrs.get('alignment',      0.5),
+                operator       = attrs.get('operator',       'IDENTITY'),
+                embedding      = emb_real,
+            )
+        if concept_ids:
+            print(f"  [LATTICE_GRAPH] Added {len(concept_ids)} CONCEPT_NODE(s) to graph.")
+
         # 3. Add Similarity-Based Edges (for all nodes with embeddings)
         all_nodes_list = list(self.graph.nodes(data=True))
         embeddings = {n: data.get('embedding') for n, data in all_nodes_list if data.get('embedding') is not None}
@@ -74,6 +95,10 @@ class LatticeGraph:
                     self.graph.add_edge(node_a, node_b, weight=sim, type="associative")
 
             # Phase 138 Patch: Minimum Connectivity (at least 4 connections per node)
+            # INCONSISTENCY 13 FIX: Do not force connectivity on concept nodes, which breaks 'orphan' topology.
+            if self.graph.nodes[node_a].get('type') == 'CONCEPT_NODE':
+                continue
+                
             current_edges = list(self.graph.successors(node_a))
             if len(current_edges) < 4:
                 # Sort by similarity descending and take top N to reach 4 total
@@ -95,19 +120,70 @@ class LatticeGraph:
         # 5. Add the Recursive Observer (The "I")
         self.graph.add_node("EGO_CURSOR", activation=1.0, mass=0.0, type="OBSERVER")
         
-        # 6. Phase 144: Sync Imaginary Lambda Manifold
-        self.sync_imaginary_manifold()
+        # 6. Phase 144: Sync Imaginary Lambda Manifold (with embedder for semantic seeding)
+        embedder = getattr(scout, 'dictionary', None)
+        embedder = getattr(embedder, '_embedder', None) or getattr(embedder, '_default_embedder', lambda: None)()
+        self.sync_imaginary_manifold(embedder=embedder)
         
-        # Phase 143/145 Patch: Restore EGO dock (restored within scope of current_dock)
+        # Phase 143/145 Patch: Restore EGO dock
         if current_dock and current_dock in self.graph:
             self.dock_ego(current_dock)
         elif "IDENTITY" in self.graph:
-            self.dock_ego("IDENTITY") # Default grounding
+            self.dock_ego("IDENTITY")  # Default grounding
 
-    def sync_imaginary_manifold(self):
-        """Phase 144: Injects functional λ-operators into the graph as Imaginary Nodes."""
+    # ── Concept Node helpers (Phase 8d) ──────────────────────────────────────
+
+    def _load_concept_node_ids(self) -> list:
+        """Returns all concept_ids stored in language.h5/concept_nodes/."""
+        ids = []
+        try:
+            with self.h5.get_file("language", mode='r') as f:
+                if f is not None and 'concept_nodes' in f:
+                    ids = list(f['concept_nodes'].keys())
+        except Exception:
+            pass
+        return ids
+
+    def _load_concept_embedding(self, concept_id: str):
+        """Loads a concept node's complex64 embedding from H5."""
+        try:
+            with self.h5.get_file("language", mode='r') as f:
+                path = f"concept_nodes/{concept_id}/embedding"
+                if f is None or path not in f:
+                    return None
+                interleaved = f[path][()]
+                half = len(interleaved) // 2
+                return (interleaved[:half] + 1j * interleaved[half:]).astype(np.complex64)
+        except Exception:
+            return None
+
+    def _load_concept_attrs(self, concept_id: str) -> dict:
+        """Loads structural attrs for a concept node from H5."""
+        attrs = {}
+        try:
+            with self.h5.get_file("language", mode='r') as f:
+                path = f"concept_nodes/{concept_id}"
+                if f is None or path not in f:
+                    return attrs
+                for key in ['classification', 'pressure', 'gradient',
+                             'winding', 'alignment', 'operator']:
+                    val = f[path].attrs.get(key)
+                    if val is not None:
+                        attrs[key] = val
+        except Exception:
+            pass
+        return attrs
+
+    def sync_imaginary_manifold(self, embedder=None):
+        """Phase 144: Injects functional λ-operators into the graph as Imaginary Nodes.
+        Passes embedder for semantic seeding if available (Phase 5 / Option B)."""
         from noise_compass.system.lambda_manifold import LambdaManifold
-        lman = LambdaManifold()
+        seeds = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             '..', 'config', 'god_token_seeds.json')
+        lman = LambdaManifold(
+            embedder   = embedder,
+            seeds_path = os.path.normpath(seeds) if os.path.exists(os.path.normpath(seeds)) else None
+        )
         
         print("  [LATTICE_GRAPH] Synchronizing Imaginary Manifold...")
         for name, op in lman.operators.items():

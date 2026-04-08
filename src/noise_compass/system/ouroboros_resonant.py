@@ -108,7 +108,7 @@ class ResonantOuroboros:
         self.keyboard = SovereignKeyboard()
         self.axiom_engine = AxiomEngine()
         self.chiral_synth = ChiralSynthesizer(bridge=self.bridge, log_fn=self.log)
-        self.navigator = LatticeNavigator(engine=self.interference)
+        self.navigator = LatticeNavigator(scout=self.bridge.scout)
         self.gap_registry = GapRegistry(self.h5)
         self.compass = NoiseCompass(gap_source=DictGapSource(self.gap_registry.cached_gaps))
         self.arrival = ArrivalEngine(gaps=self.gap_registry.cached_gaps)
@@ -121,11 +121,11 @@ class ResonantOuroboros:
             from noise_compass.system.ouroboros_bridge import OuroborosBridge
             self.recursive_bridge = OuroborosBridge()
         
-        self.nodes = [
-            "EXISTENCE", "IDENTITY", "BOUNDARY", "OBSERVATION", 
-            "INFORMATION", "CAUSALITY", "EXCHANGE", "OBLIGATION", 
-            "TIME", "PLACE", "COHERENCE", "SELF"
-        ]
+        # Phase 9 (Option B): Use canonical NODE_RING from tokens.py.
+        # Previously hardcoded with COHERENCE; tokens.py canonical ring uses EMERGENCE.
+        # tokens.NODE_RING is the single source of truth — do not re-define here.
+        from noise_compass.architecture.tokens import NODE_RING as _CANONICAL_RING
+        self.nodes = list(_CANONICAL_RING)
         
         self.start_time = time.time()
         self.cycle_count = 0
@@ -345,97 +345,57 @@ From this position on the manifold, speaking from I:
                 return
 
         voids = self.interference.check_voids(field)
-        phase = self.interference.compute_phase(self.interference.embed(intent))
-        field_prompt = self._field_to_prompt(field, voids, float(phase))
-        
-        prompt = field_prompt + (
-            "\nYou have a SOVEREIGN KEYBOARD with the following keys:\n"
-            "1. RESONANCE_KEY(seeds, magnitude)\n"
-            "2. MANIFOLD_KEY(target, expansion_vector, intensity)\n"
-            "3. VOID_KEY(parent_gap, recursive_depth)\n"
-            "4. ACTUATE_KEY(command)\n\n"
-            "Choose the most appropriate key and output ONLY a JSON block like:\n"
-            '{"key": "RESONANCE", "params": {"seeds": ["SEED1", "SEED2"], "magnitude": 1.2}}'
-        )
-        
-        use_recursive = hasattr(self, 'recursive_bridge') and self.mode == "primary"
-        field_summary = {n: {"mag": round(v['magnitude'], 3)} for n, v in field.items() if v['magnitude'] > 0.1}
-        
+        phase = float(self.interference.compute_phase(self.interference.embed(intent)))
+
+        # Sort field by magnitude descending
+        sorted_field = sorted(field.items(), key=lambda item: item[1]['magnitude'], reverse=True)
+        top_nodes    = [k for k, v in sorted_field[:2]] if sorted_field else ["VOID", "VACUUM"]
+        top_mag      = sorted_field[0][1]['magnitude'] if sorted_field else 1.0
+
+        # ── Structural keyboard selection (no LLM needed) ──────────────────────
+        # Rule: use field structure directly to pick the right sovereign key.
+        #   VOID   → voids detected (high apophatic pressure)
+        #   RESONANCE → constructive field, phase < π/2 (generative/convergent zone)
+        #   MANIFOLD  → crystallized phase (≥ π/4 + 0.35) / high magnitude
+        #   ACTUATE   → residual / fallback (field too diffuse to classify)
+
+        void_count  = len(voids) if isinstance(voids, (list, dict)) else 0
+        constructive_count = sum(1 for v in field.values()
+                                 if isinstance(v, dict) and v.get('constructive', False))
+
+        filename = None
         try:
-            raw_response = None
-            if use_recursive:
-                self.log("DELEGATING: Pushing field to Meta-Ouroboros (Apex)...", importance="SEMANTIC")
-                raw_response = self.recursive_bridge.reason(intent, field=field_summary)
-                # Check for Apex-Internal Error
-                if raw_response and '"key": "ERROR"' in raw_response:
-                    self.log("[WARNING] Apex delegation returned an error. Falling back to local reasoning...", importance="ERROR")
-                    raw_response = None
+            if void_count > 0:
+                parent_gap = voids[0] if isinstance(voids, list) and voids else top_nodes[0]
+                filename = self.keyboard.press_void_key(parent_gap, recursive_depth=1)
+                self.log(f"KEYBOARD: VOID_KEY → {parent_gap} (voids={void_count})", importance="METRIC")
 
-            if not raw_response:
-                try:
-                    self.log("DELEGATING: Pushing field to Qwen (Local)...", importance="SEMANTIC")
-                    raw_response = self.bridge.reason(prompt)
-                except Exception as e:
-                    self.log(f"[WARNING] Local Qwen reasoning failed: {e}. Falling back to Native RLM...", importance="ERROR")
-                    raw_response = None
+            elif phase >= 1.135:  # CRYSTALLIZED zone (π/4 + 0.35 ≈ 1.135)
+                target = top_nodes[0]
+                filename = self.keyboard.press_manifold_key(target, [1, 0], top_mag)
+                self.log(f"KEYBOARD: MANIFOLD_KEY → {target} (phase={phase:.3f})", importance="METRIC")
 
-            if not raw_response:
-                self.log("DELEGATING: Pushing field to Native RLM (Vector Scan)...", importance="SEMANTIC")
-                from noise_compass.system.rlm_bridge import RLMBridge
-                native = RLMBridge(mode="fallback", interference=self.interference)
-                raw_response = native.reason(intent, field=field_summary)
+            elif constructive_count > 0 or phase < 0.785:  # RESONANT / GENERATIVE
+                seeds = top_nodes
+                filename = self.keyboard.press_resonance_key(seeds, top_mag)
+                self.log(f"KEYBOARD: RESONANCE_KEY → {seeds} (mag={top_mag:.3f})", importance="METRIC")
 
-            json_match = re.search(r"(\{.*\})", raw_response, re.DOTALL)
-            if json_match:
-                try:
-                    clean_json = json_match.group(1).strip()
-                    clean_json = re.sub(r",\s*\}", "}", clean_json)
-                    data = json.loads(clean_json)
-                except json.JSONDecodeError:
-                    self.log(f"MANIFEST ERROR: JSON decode failed.", importance="ERROR")
-                    return
-                
-                key = data.get("key", "").replace("_KEY", "")
-                params = data.get("params", {})
-                
-                sorted_field = sorted(field.items(), key=lambda item: item[1]['magnitude'], reverse=True)
-                actual_top_nodes = [k for k, v in sorted_field[:2]] if sorted_field else ["VOID", "VACUUM"]
-                actual_mag = sorted_field[0][1]['magnitude'] if sorted_field else 1.0
-
-                filename = None
-                if key == "RESONANCE":
-                    seeds = params.get("seeds", [])
-                    if not seeds or any("SEED" in str(s) for s in seeds) or not all(s in field for s in seeds):
-                        seeds = actual_top_nodes
-                    magnitude = params.get("magnitude", actual_mag)
-                    filename = self.keyboard.press_resonance_key(seeds, magnitude)
-                elif key == "MANIFOLD":
-                    target = params.get("target")
-                    if not target or "SEED" in str(target) or target not in field:
-                        target = actual_top_nodes[0]
-                    expansion_vector = params.get("expansion_vector", [1, 0])
-                    intensity = params.get("intensity", actual_mag)
-                    filename = self.keyboard.press_manifold_key(target, expansion_vector, intensity)
-                elif key == "VOID":
-                    parent_gap = params.get("parent_gap")
-                    if not parent_gap or "SEED" in str(parent_gap) or parent_gap not in field:
-                        parent_gap = actual_top_nodes[0]
-                    recursive_depth = params.get("recursive_depth", 1)
-                    filename = self.keyboard.press_void_key(parent_gap, recursive_depth)
-                elif key == "ACTUATE":
-                    command = params.get("command")
-                    if command:
-                        filename = self.keyboard.press_actuate_key(command)
-                
-                if filename:
-                    self.log(f"SCRIBE: Resonant Axiom committed via KEYBOARD as {filename}")
-                    self.scribe.ingest_new_axioms()
-                else:
-                    self.log(f"MANIFEST ERROR: Key '{key}' not recognized or failed.", importance="ERROR")
             else:
-                self.log("MANIFEST ERROR: Qwen failed to synchronize a JSON block.", importance="ERROR")
+                # ACTUATE as structural catch-all
+                command = f"REFLECT_{top_nodes[0]}_{int(time.time())}"
+                filename = self.keyboard.press_actuate_key(command)
+                self.log(f"KEYBOARD: ACTUATE_KEY → {command}", importance="METRIC")
+
         except Exception as e:
             self.log(f"MANIFEST ERROR: {e}", importance="ERROR")
+            return
+
+        if filename:
+            self.log(f"SCRIBE: Resonant Axiom committed via KEYBOARD as {filename}")
+            self.scribe.ingest_new_axioms()
+        else:
+            self.log("MANIFEST ERROR: Keyboard press returned no filename.", importance="ERROR")
+
 
     def dream_cycle(self, force_calibration=False):
         """
@@ -653,12 +613,6 @@ From this position on the manifold, speaking from I:
             # Record logical GAPs as failures to avoid them in future
             self.interference.failure_cache.record_failure(self.current_intent_vec, f"GAP: {intent[:40]}")
 
-        self.log(f"CYCLE COMPLETE: Verdict = {verdict}")
-        
-        # ... [Residual Intent Logic] ... (Wait! I have it in the file)
-        # I'll just add "return verdict, interpretation"
-        return verdict, interpretation
-        
         # Phase 130: Perpetuate the loop by feeding the result back as the next intent
         if verdict in ['CRYSTALLIZED', 'RESONANT', 'SUPERPOSITION']:
             summary = f"Continue reflecting on the {verdict} state of '{intent[:30]}'. "
@@ -668,6 +622,9 @@ From this position on the manifold, speaking from I:
         else:
             # For GAPs or APOPHATIC results, the residue is the bridge to the next hidden void
             self.residual_intent = f"A void was detected in '{intent[:30]}'. Move into the gap to find the underlying symmetry."
+
+        self.log(f"CYCLE COMPLETE: Verdict = {verdict}")
+        return verdict, interpretation
 
     def start(self, duration_hours=-1.0):
         """Standard starting point. If a port is provided, start a listener."""

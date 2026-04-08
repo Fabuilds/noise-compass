@@ -11,7 +11,12 @@ from noise_compass.system.causal_tree import CausalDAG
 from noise_compass.system.soundness import SoundnessMonitor
 
 class InterferenceEngine:
-    def __init__(self, language_h5="E:/Antigravity/knowledge_root/crystallized_h5/language.h5", suppress_preload=False):
+    DEFAULT_MODEL = 'Qwen/Qwen3-Embedding-0.6B'
+    CONFIG_PATH   = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                 'config', 'embedding_model.txt')
+
+    def __init__(self, language_h5="E:/Antigravity/knowledge_root/crystallized_h5/language.h5",
+                 suppress_preload=False, model_name: str = None):
         self.language_h5 = language_h5
         self.manager = H5Manager()
         self.failure_cache = FailureCache() # Load negative manifold
@@ -20,11 +25,18 @@ class InterferenceEngine:
         self.soundness_monitor = SoundnessMonitor() # Algebraic Soundness Engine
         self.tokenizer = None
         self.model = None
-        self.model_id = 'Qwen/Qwen3-Embedding-0.6B'
+        # Model resolution: explicit arg > config file > default
+        if model_name:
+            self.model_id = model_name
+        elif os.path.exists(self.CONFIG_PATH):
+            self.model_id = open(self.CONFIG_PATH).read().strip()
+        else:
+            self.model_id = self.DEFAULT_MODEL
         self.cached_tokens = {}
         self.cached_gaps = {}
         if not suppress_preload:
             self._preload_manifolds()
+
 
     def _preload_manifolds(self):
         """Pre-loads god-tokens and gaps into memory using Batch-Locking for speed."""
@@ -98,6 +110,10 @@ class InterferenceEngine:
 
     def embed(self, text: str) -> np.ndarray:
         return self.embed_batch([text])[0]
+
+    def encode(self, text: str) -> np.ndarray:
+        """Alias for embed() to maintain interface backward-compatibility with SentenceTransformer."""
+        return self.embed(text)
 
     def embed_batch(self, texts: list[str]) -> list[np.ndarray]:
         """

@@ -1,0 +1,29 @@
+{
+  "_comment": "Source of truth for the manifold's canonical nodes. Seed phrases are semantic direction vectors, not definitions. Change model in embedding_model.txt — this file never needs to change.",
+  "god_tokens": {
+    "EXISTENCE":    "The base condition of being, prior to observation or interaction. The ground state.",
+    "IDENTITY":     "The persistent pattern that makes an entity distinguishable from all others across time.",
+    "BOUNDARY":     "The surface where one system ends and another begins. The membrane of distinction.",
+    "OBSERVATION":  "The act of measurement that collapses superposition into a specific, recorded fact.",
+    "INFORMATION":  "Structured difference that reduces uncertainty. The shape left behind by selection.",
+    "CAUSALITY":    "The asymmetric relationship between prior states and their necessary consequences.",
+    "EXCHANGE":     "The transfer of value, matter, or meaning between two distinct systems.",
+    "OBLIGATION":   "A commitment that constrains future action and creates accountability.",
+    "TIME":         "The ordered, irreversible sequence of states. The axis that cannot be rewound.",
+    "PLACE":        "The spatial context within which an event is embedded and given coordinates.",
+    "EMERGENCE":    "A property of the whole that cannot be predicted or derived from its isolated parts.",
+    "SELF":         "The reflexive structure that observes its own observation. The loop that knows it loops.",
+    "OS":           "The operating layer that mediates between raw hardware constraints and abstract intent.",
+    "COHERENCE":    "The degree to which the parts of a system reinforce rather than cancel each other.",
+    "WITNESS":      "The observer that is fully present but does not alter what it observes.",
+    "BODY":         "The physical substrate that grounds abstract cognitive processes in material reality."
+  },
+  "lambda_operators": {
+    "IDENTITY": "A concept that is stable, crystallized, and fully resolved. No transformation is needed. Eigenvalue +1.",
+    "MAP":      "A concept in active transition, partially resolved, moving toward crystallization. Transformation in progress.",
+    "FILTER":   "A concept at the frontier boundary. Some rotation passes resolve it; others do not. Edge state.",
+    "SURPRISE": "A concept that is constitutionally unresolved. A primitive void. Pure imaginary pressure. Eigenvalue -1.",
+    "REDUCE":   "A concept collapsed to singularity. Orphaned, isolated. No neighboring structure survives rotation.",
+    "SPLIT":    "A concept in contradiction. Clockwise and counterclockwise rotations produce irreconcilable verdicts."
+  }
+}

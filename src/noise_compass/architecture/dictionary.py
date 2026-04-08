@@ -35,12 +35,20 @@ class Dictionary:
     - Deep + wide:     god-token (any pattern of that type)
     - Shallow + wide:  structured soup template (approximate prior)
     - Shallow + narrow: spurious attractor (high degeneracy, confabulation)
+
+    Option B (Deferred Seeding):
+    Pass an `embedder` callable (str -> np.ndarray) to generate god-token
+    vectors from seed phrases at session startup, rather than loading them
+    from H5 phase_vector datasets.  If omitted, falls back to
+    InterferenceEngine.embed (Qwen3) for backward compatibility.
     """
 
     CRYSTALLIZATION_THRESHOLD = 32   # Adjusted for Session 16 (Qwen3 dense vectors)
     GOD_TOKEN_SIGMA           = 1.5  # std devs above mean for relative activation threshold
+    SEEDS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                              'config', 'god_token_seeds.json')
 
-    def __init__(self, h5_manager=None):
+    def __init__(self, h5_manager=None, embedder=None, seeds_path=None):
         self.entries:       Dict[str, np.ndarray] = {}
         self.god_tokens:    Dict[str, GodToken]   = {}
         self.gap_tokens:    Dict[str, GapToken]   = {}
@@ -49,6 +57,80 @@ class Dictionary:
         self._last_access:  Dict[str, float]      = {}
         self.system_time:   float                 = 0.0
         self.h5 = h5_manager
+        self._embedder = embedder          # callable: str -> np.ndarray, or None
+        self._seeds_path = seeds_path or self.SEEDS_PATH
+
+    # ── Option B: Deferred Seeding ────────────────────────────────────────────
+
+    def _default_embedder(self):
+        """Returns InterferenceEngine.embed as the fallback embedder.
+        Imported lazily to avoid circular imports."""
+        try:
+            from noise_compass.system.interference_engine import InterferenceEngine
+            engine = InterferenceEngine(suppress_preload=True)
+            return engine.embed
+        except Exception as e:
+            print(f"[DICTIONARY] Warning: could not load default embedder: {e}")
+            return None
+
+    def _load_god_token_seeds(self):
+        """Embeds god-token seed phrases and populates self.god_tokens + self.entries.
+        Called automatically from load_cache() when seed phrases are present in H5.
+        Uses self._embedder if set, otherwise falls back to _default_embedder()."""
+        # Resolve embedder
+        embedder = self._embedder
+        if embedder is None:
+            embedder = self._default_embedder()
+        if embedder is None:
+            print("[DICTIONARY] No embedder available — god-token seeds skipped.")
+            return
+
+        # Load seed phrases: prefer H5 (runtime) over JSON (install-time)
+        seeds = {}
+        if self.h5:
+            seeds = self.h5.get_god_token_seeds()   # H5 is source of truth post-setup
+        if not seeds and os.path.exists(self._seeds_path):
+            import json
+            raw = json.load(open(self._seeds_path, encoding='utf-8'))
+            seeds = raw.get('god_tokens', {})
+
+        if not seeds:
+            print("[DICTIONARY] No god-token seed phrases found (run: compass setup).")
+            return
+
+        print(f"[DICTIONARY] Embedding {len(seeds)} god-token seed phrases...")
+        for name, phrase in seeds.items():
+            if name in self.god_tokens:
+                continue   # already loaded (e.g. from crystallized axioms)
+            try:
+                vec = embedder(phrase)
+                if vec is None:
+                    continue
+                vec = np.array(vec)
+                # InterferenceEngine.embed returns complex64; take the real axis.
+                # The imaginary axis is the λ-operator layer's concern, not node storage.
+                if np.iscomplexobj(vec):
+                    vec = vec.real
+                vec = vec.astype(np.float32)
+                gt = GodToken(
+                    id=name,
+                    seed_terms=[phrase],
+                    embedding=vec,
+                    stability=0.5,
+                    nature='CANONICAL'
+                )
+                # Read persisted scalar attrs from H5 if available
+                if self.h5:
+                    stab = self.h5.get_attr('language', f'god_tokens/{name}', 'stability')
+                    if stab is not None:
+                        gt.stability = float(stab)
+                self.add_god_token(gt)
+            except Exception as e:
+                print(f"[DICTIONARY] Seed embedding failed for {name}: {e}")
+
+        print(f"[DICTIONARY] Seeded {len(self.god_tokens)} god-tokens in-memory.")
+
+    # ─────────────────────────────────────────────────────────────────────────
 
     # ── Entry management ──────────────────────────────────────────
 
@@ -448,9 +530,15 @@ class Dictionary:
         print(f"[H5] Dictionary crystallized to language.h5. Count: {len(self.entries)}")
 
     @classmethod
-    def load_cache(cls, path: str = None, h5_manager=None) -> "Dictionary":
-        """Load dictionary from H5 semantic manifold."""
-        d = cls(h5_manager=h5_manager)
+    def load_cache(cls, path: str = None, h5_manager=None,
+                   embedder=None, seeds_path=None) -> "Dictionary":
+        """Load dictionary from H5 semantic manifold.
+
+        Option B extension: pass `embedder` to generate god-token vectors
+        from seed phrases stored in H5.  If omitted, falls back to
+        InterferenceEngine.embed (Qwen3) for backward compatibility.
+        """
+        d = cls(h5_manager=h5_manager, embedder=embedder, seeds_path=seeds_path)
         if not h5_manager:
             return d
 
@@ -461,7 +549,7 @@ class Dictionary:
             if vec is not None:
                 d.entries[eid] = vec
                 d._entry_depth[eid] = depth
-        
+
         # 2. Load Crystallized Axioms (Phase 125)
         # These are treated as God-Tokens (Structural Anchors)
         axioms = h5_manager.get_all_confirmed_axioms()
@@ -473,7 +561,13 @@ class Dictionary:
             )
             d.add_god_token(gt)
             # Ensure they have high depth/stability
-            d._entry_depth[aid] = 2.0 
-        
-        print(f"[H5] Dictionary loaded. Entries: {len(d.entries)}, Axioms: {len(axioms)}")
+            d._entry_depth[aid] = 2.0
+
+        # 3. Option B: Embed god-token seed phrases (deferred seeding)
+        #    This runs after axioms so canonical tokens aren't double-loaded.
+        d._load_god_token_seeds()
+
+        print(f"[H5] Dictionary loaded. Entries: {len(d.entries)}, "
+              f"God-tokens: {len(d.god_tokens)}, Axioms: {len(axioms)}")
         return d
+

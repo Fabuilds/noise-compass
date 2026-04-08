@@ -44,6 +44,32 @@ class H5Manager:
         new_time = current + 1
         self.set_attr("self", "core/clock", "structural_time", new_time)
         return new_time
+
+    # ── Option B: Deferred Seeding ────────────────────────────────────────────
+    def set_god_token_seed(self, name: str, phrase: str):
+        """Writes a seed phrase for a god-token. Vectors are generated from
+        this phrase at session startup by whatever embedder is active."""
+        with self.get_file("language", mode='a') as f:
+            grp = f.require_group(f"god_tokens/{name}")
+            grp.attrs["seed_phrase"] = phrase
+
+    def get_god_token_seeds(self) -> dict:
+        """Reads all stored seed phrases. Returns {name: phrase} dict.
+        Called by Dictionary.__init__() to populate in-memory embeddings."""
+        result = {}
+        try:
+            with self.get_file("language", mode='r') as f:
+                if "god_tokens" not in f:
+                    return result
+                for name in f["god_tokens"]:
+                    attrs = f[f"god_tokens/{name}"].attrs
+                    if "seed_phrase" in attrs:
+                        result[name] = str(attrs["seed_phrase"])
+        except Exception:
+            pass
+        return result
+    # ─────────────────────────────────────────────────────────────────────────
+
         
     def check_system_vitals(self, threshold_gb=0.8):
         """Pre-flight check to prevent OOM-hangs using native psutil."""
@@ -252,7 +278,6 @@ class H5Manager:
             except (KeyError, Exception):
                 pass
         return None
-        return None
 
     @h5_retry
     def update_complex_vector(self, module, group_path, dataset_name, complex_vector):
@@ -422,7 +447,6 @@ class H5Manager:
             print(f"[CRYSTAL] Axiom {axiom_id} crystallized into substrate.")
 
     @h5_retry
-    @h5_retry
     def get_active_axioms(self):
         """Retrieves all accreted axioms from the substrate."""
         axioms = {}
@@ -568,15 +592,6 @@ class H5Manager:
                     failures.append(f["hot_failures"][k][()])
         return failures
 
-    @h5_retry
-    def increment_bubble_mass(self, token):
-        """Scales the saliency of a dissonance token based on frequency."""
-        with self.get_file("language", mode='a') as f:
-            path = f"god_tokens/{token}"
-            if path in f:
-                mass = f[path].attrs.get("bubble_mass", 1.0)
-                f[path].attrs["bubble_mass"] = mass + 1.0
-                f[path].attrs["last_mass_sync"] = time.time()
     @h5_retry
     def save_causal_relation(self, source, target, rel_type, weight=1.0, info: str = ""):
         """Saves a directed causal relationship to causal.h5."""

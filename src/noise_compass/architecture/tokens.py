@@ -555,16 +555,25 @@ class WaveFunction:
 
     def zone(self) -> str:
         p = self.phase
+        # Zone boundaries (aligned with manifest verdict labels):
+        # [0.00, 0.40)  → GROUND      (pure known, dictionary match)
+        # [0.40, 0.435) → CONVERGENT  (orbiting, approaching attractor)
+        # [0.435, 1.135]→ GENERATIVE  (generative tension zone — π/4 ± 0.35)
+        # (1.135, 1.571)→ DIVERGENT   (crystallizing under pressure)
+        # [1.571, ∞)    → CRYSTALLIZED (π/2 and above — full eigenvalue +1)
         if p < 0.40:
             return "GROUND"
-        elif p < math.pi / 4 - 0.35:
+        elif p < math.pi / 4 - 0.35:   # < 0.435
             return "CONVERGENT"
-        elif p <= math.pi / 4 + 0.35:
+        elif p <= math.pi / 4 + 0.35:  # ≤ 1.135
             return "GENERATIVE"
-        elif p < 1.45:
+        elif p < 1.45:                 # < 1.45
             return "DIVERGENT"
-        else:
+        elif p < math.pi / 2:          # < 1.571
             return "TURBULENT"
+        else:
+            return "CRYSTALLIZED"
+
 
 
 @dataclass

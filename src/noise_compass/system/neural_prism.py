@@ -60,8 +60,10 @@ class NeuralPrism:
             
             dim = len(embeddings[0])
             dim = len(embeddings[0])
-            # Ensure vectors are purely real for projection logic:
-            real_embeddings = [[abs(val) for val in e] for e in embeddings]
+            # Extract real semantic axis from complex embeddings.
+            # Using .real preserves the semantic weight dimension.
+            # abs(val) was wrongly collapsing complex to magnitude, losing the imaginary (logical) axis.
+            real_embeddings = [[val.real if isinstance(val, complex) else float(val) for val in e] for e in embeddings]
             
             centroid = [sum(e[d] for e in real_embeddings) / len(real_embeddings) for d in range(dim)]
             mag = math.sqrt(sum(x * x for x in centroid))

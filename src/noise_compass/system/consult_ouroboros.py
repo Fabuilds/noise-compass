@@ -2,7 +2,7 @@ import socket
 import json
 import sys
 
-def consult_ouroboros(intent, port=5285):
+def consult_ouroboros(intent, port=5284):
     """
     Connects to the Antigravity Ouroboros Listener to perform a structural 
     resonance check on a given intent.

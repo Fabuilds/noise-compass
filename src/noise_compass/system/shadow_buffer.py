@@ -5,7 +5,9 @@ import json
 import time
 from collections import deque
 
-SHADOW_FILE = os.path.join(BASE_DIR, 'Lattice_DB', 'SHADOW_BUFFER.json')
+RUNTIME_DIR = "E:/Antigravity/Runtime"
+SHADOW_FILE = os.path.join(RUNTIME_DIR, 'SHADOW_BUFFER.json')
+os.makedirs(RUNTIME_DIR, exist_ok=True)
 
 class ShadowBuffer:
     def __init__(self, max_len=1000):

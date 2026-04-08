@@ -57,7 +57,7 @@ class LatticeNavigator:
             return True
         return False
 
-    def navigate(self, intent, recursion_depth=3, mode="TOPOLOGICAL"):
+    def navigate(self, intent, recursion_depth=3, mode="TOPOLOGICAL", inverted=False, **kwargs):
         """
         Performs a multi-step walk through the manifold based on intent.
         1. Embed Intent.
@@ -101,6 +101,9 @@ class LatticeNavigator:
             self.graph.dock_ego(target_node)
             self._update_perspective()
             
+            # Phase 141 Fix: Properly append to trajectory history before returning
+            self._append_trajectory(intent, source_node, target_node, current_path, intent_vec)
+            
         return current_path
 
     def transform(self, operator_name: str):
@@ -131,21 +134,20 @@ class LatticeNavigator:
             print(f"  [NAVIGATOR] Arrived in Real Space: {target_node}")
             return target_node
         return None
-            
-        # Append to history (Phase 141 Revised: Open vs Concluded Trails)
+
+    def _append_trajectory(self, intent: str, source_node: str,
+                           target_node: str, current_path: list, intent_vec=None):
+        """Records a completed navigation to history and saves the registry.
+        Phase 141 Revised: Open vs Concluded Trails."""
         self.trajectory_history.append({
             'intent': intent,
             'source': source_node,
             'target': target_node,
             'path': current_path,
-            'status': 'OPEN' 
+            'status': 'OPEN'
         })
-        
-        # Phase 141 & 142: Formalizing Perspective & Compass Export
-        magnetic_field = self.get_magnetic_field(intent_vec)
+        magnetic_field = self.get_magnetic_field(intent_vec) if intent_vec is not None else None
         self.graph.save_registry(self.trajectory_history, magnetic_field=magnetic_field)
-            
-        return current_path
 
     def conclude_trail(self, intent: str):
         """Marks a specific semantic trajectory as CONCLUDED (a stable perspective established)."""
@@ -204,7 +206,11 @@ class LatticeNavigator:
         # 4. Calculate Angle (Heading) relative to North (AGENT identity)
         # We project the 384D vectors onto a 2D plane for "reading" the compass
         # (Using first 2 dimensions as a simple projection for now)
-        angle_rad = np.arctan2(unit_intent[1], unit_intent[0]) - np.arctan2(unit_dock[1], unit_dock[0])
+        # Fix: Extract .real since embeddings may be complex64
+        y_int, x_int = unit_intent[1].real if np.iscomplexobj(unit_intent) else unit_intent[1], unit_intent[0].real if np.iscomplexobj(unit_intent) else unit_intent[0]
+        y_doc, x_doc = unit_dock[1].real if np.iscomplexobj(unit_dock) else unit_dock[1], unit_dock[0].real if np.iscomplexobj(unit_dock) else unit_dock[0]
+        
+        angle_rad = np.arctan2(y_int, x_int) - np.arctan2(y_doc, x_doc)
         heading = np.degrees(angle_rad) % 360
         
         # 5. Determine Turn Direction

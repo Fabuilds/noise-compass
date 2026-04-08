@@ -103,30 +103,50 @@ class GapRegistry:
         imbalance = abs(left_res - right_res)
         return float(imbalance * config['void_depth'])
 
-    def register_gap(self, gap_name, left, right, void_depth=0.5, void=True, binder_depth=0):
-        """Crystallizes a new gap into the H5 substrate."""
+    def register_gap(self, gap_name, left, right, void_depth=0.5, void=True,
+                     binder_depth=0, classification: str = None,
+                     alignment: float = None, gradient: float = None):
+        """Crystallizes a new gap into the H5 substrate.
+
+        Phase 8c extension: accepts compositor-derived metadata:
+            classification — 'primitive', 'frontier', etc.
+            alignment      — 0.0-1.0 (1.0 = fully resolved)
+            gradient       — CW_mean - CCW_mean (positive = CW dominant)
+        """
         metadata = {
-            'left_boundary': left,
-            'right_boundary': right,
-            'void_depth': void_depth,
-            'void': void,
-            'tension': 0.0, # Initial tension
-            'binder_depth': binder_depth
+            'left_boundary':  left,
+            'right_boundary': right if right else left,
+            'void_depth':     void_depth,
+            'void':           void,
+            'tension':        0.0,
+            'binder_depth':   binder_depth,
         }
-        
+        # Phase 8c: compositor-derived attrs (optional)
+        if classification is not None:
+            metadata['classification'] = classification
+        if alignment is not None:
+            metadata['alignment'] = float(alignment)
+        if gradient is not None:
+            metadata['gradient'] = float(gradient)
+
         # Save to H5 via manager
         for key, val in metadata.items():
             self.manager.set_attr("language", f"gaps/{gap_name}", key, val)
-        
-        # Update cache
+
+        # Update in-memory cache
         self.cached_gaps[gap_name] = {
-            'left': left,
-            'right': right,
-            'void_depth': void_depth,
-            'void': void,
-            'tension_threshold': 0.1
+            'left':              left,
+            'right':             right if right else left,
+            'void_depth':        void_depth,
+            'void':              void,
+            'tension_threshold': 0.1,
+            'classification':    classification or 'unknown',
+            'alignment':         alignment if alignment is not None else 0.5,
+            'gradient':          gradient if gradient is not None else 0.0,
         }
-        print(f"[GAP_REGISTRY] New gap '{gap_name}' serialized to substrate.")
+        print(f"[GAP_REGISTRY] Gap '{gap_name}' → {left} ↔ {right}  "
+              f"[{classification or 'structural'}  depth={void_depth:.2f}]")
+
 
     def log_violation(self, gap_name, info):
         """Records the gap violation as an enriched dissonance object."""

@@ -159,12 +159,7 @@ class Ouroboros:
         with open(self.log_path, "a") as f:
             f.write(f"\n--- TRIPLE SESSION START: {time.ctime()} ---\n")
 
-    def log(self, msg, importance="INFO"):
-        """
-        Refined Logging Layer (Phase 24)
-        Importance: INFO, SEMANTIC, WARNING, ERROR, PHYSICAL, METRIC
-        """
-        timestamp = time.ctime()
+
     def log(self, message, importance="INFO"):
         """Logs to a file and internal record with uncapitalized 'now' grounding."""
         timestamp = "now" # Grounded in the immediate uncapturable present
@@ -1038,7 +1033,11 @@ class Ouroboros:
         self.log("DEEP_DREAM: Scan complete. Interferences collapsed into growth area.", importance="SEMANTIC")
 
     def vote_on_pending_axioms(self):
-        """Phase 29: Participates in the Collective Consensus."""
+        """Phase 29: Participates in the Collective Consensus.
+        Votes are now axiom-specific: embeds the axiom content and scores
+        it against the active god-token field rather than using a generic
+        coherence score that was identical for every axiom.
+        """
         growth_dir = "e:/Antigravity/Qwen"
         if not os.path.exists(growth_dir): return
         
@@ -1046,23 +1045,25 @@ class Ouroboros:
         for axiom_file in pending_axioms:
             path = os.path.join(growth_dir, axiom_file)
             try:
-                # Perform independent resonance check
                 with open(path, "r", encoding="utf-8") as f:
                     content = f.read()
-                
-                # Extract seeds
-                seed_tokens = []
-                for line in content.split("\n")[:10]:
-                    if "Seed:" in line:
-                        seed_tokens = line.split("Seed:")[1].strip().split(", ")
-                        break
-                
-                # Independent Resonance Test
-                resonance = self.scout.harmonizer.evaluate_coherence() # Simplified for now
-                # In a full run, we'd actually parse the axiom's logic
-                
+
+                # Axiom-specific resonance: embed the axiom text and score
+                # against active god-tokens. High similarity to active attractors
+                # = high resonance vote.
+                axiom_vec = self.interference.embed(content[:512])  # first 512 chars
+                active_gods = self.scout.dictionary.active_god_tokens(axiom_vec)
+
+                if active_gods:
+                    # Mean similarity across activated god-tokens
+                    resonance = float(sum(sim for _, sim in active_gods) / len(active_gods))
+                else:
+                    # No active attractors → low resonance
+                    resonance = 0.1
+
                 self.manifold.cast_vote(axiom_file, resonance)
-            except: pass
+            except:
+                pass
 
     def start(self):
         self.log(f"Autonomous Triple-Cycle Active for {self.duration/3600} hours.")
@@ -1114,8 +1115,6 @@ class Ouroboros:
                 self.cycle_count += 1
                 if self.cycle_count % 13 == 0:
                     self.record_pulse()
-        except KeyboardInterrupt:
-            self.log("Cycle Interrupted by Observer.")
         except KeyboardInterrupt:
             self.log("Cycle Interrupted by Observer.")
         
